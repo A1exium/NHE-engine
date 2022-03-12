@@ -46,8 +46,9 @@ void Render_render(Render *render) {
           Texture *cur_texture;
           GameObject *cur_obj = View_get_GameObject(view, x, y, z);
           if (cur_obj) {
-            switch (gameObject_get_type(cur_obj)) {
-              case Tile: {
+            GameObjectType c_type = gameObject_get_type(cur_obj);
+            switch (c_type) {
+              case 1: {
                 cur_texture = TILE_TEXTURE;
                 break;
               }
@@ -55,11 +56,11 @@ void Render_render(Render *render) {
                 cur_texture = NONE_TEXTURE;
                 break;
               }
-              case Player: {
+              case 2: {
                 cur_texture = PLAYER_TEXTURE;
                 break;
               }
-              case Nishal: {
+              case 3: {
                 cur_texture = NISHAL_TEXTURE;
                 break;
               }

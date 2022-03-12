@@ -34,4 +34,24 @@ extern void Area_init(Area area);
  */
 void Area_insert_GameObject(Area area, GameObject *game_object, int z);
 
+/**
+ * TODO
+ * Двигает объект на дельту по координатам в 2D пространстве\n
+ * <b>Сигнатура может измениться!</b>
+ * @param obj Объект, который нужно сдвинуть
+ * @param dx Сдвиг по x
+ * @param dy Сдвиг по y
+ */
+extern void GameObject_move(GameObject *obj, Area area, int dx, int dy);
+
+/**
+ * TODO
+ * "Телепортирует" объект на координаты
+ * Сигнатура может измениться
+ * @param obj Объект которому нужно поменять координаты
+ * @param x новая координата по x
+ * @param y новая координата по y
+ */
+extern void GameObject_teleport(GameObject *obj, Area area, int x, int y);
+
 #endif //SGM_SRC_GAME_AREA_H_

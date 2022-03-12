@@ -7,13 +7,8 @@
 
 //! Всевозможные типы объектов
 enum GameObjectType_t;
-//typedef enum GameObjectType_t GameObjectType;
-typedef enum GameObjectType_t {
-  None,
-  Tile,
-  Player,
-  Nishal,
-} GameObjectType;
+
+typedef int GameObjectType;
 
 /** @struct s_GameObject GameObject.h GameObject.c
  * Основная структура. Каждый объект в игре является \b GameObject
@@ -71,25 +66,5 @@ extern void GameObject_free(GameObject *gameobject);
  * @return Тип заданного объекта
  */
 extern GameObjectType gameObject_get_type(GameObject *obj);
-
-/**
- * TODO
- * Двигает объект на дельту по координатам в 2D пространстве\n
- * <b>Сигнатура может измениться!</b>
- * @param obj Объект, который нужно сдвинуть
- * @param dx Сдвиг по x
- * @param dy Сдвиг по y
- */
-extern void GameObject_move(GameObject *obj, int dx, int dy);
-
-/**
- * TODO
- * "Телепортирует" объект на координаты
- * Сигнатура может измениться
- * @param obj Объект которому нужно поменять координаты
- * @param x новая координата по x
- * @param y новая координата по y
- */
-extern void GameObject_teleport(GameObject *obj, int x, int y);
 
 #endif //SGM_SRC_GAME_GAMEOBJECT_H_
