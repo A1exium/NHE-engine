@@ -11,7 +11,7 @@ GameObject *createObject(GameObjectType type, int x, int y, int z, Area area, Li
     area[x][y][z] = game_object;
   }
   if (class) {
-    ListGameObject_add(class, game_object);
+    listGameObject_add(class, game_object);
   }
   return game_object;
 }

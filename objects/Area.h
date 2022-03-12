@@ -23,6 +23,10 @@ typedef GameObject *Area[AREA_MAX_X][AREA_MAX_Y][AREA_MAX_Z];
  */
 extern void Area_init(Area area);
 
+extern GameObject *area_get_object(Area area, int x, int y, int z);
+
+extern GameObject *area_pop_object(Area area, int x, int y, int z);
+
 /**
  * TODO
  * Добавляет GameObject на координаты (x, y)ю
@@ -32,7 +36,7 @@ extern void Area_init(Area area);
  * @param game_object Добавляемый объект
  * @param z слой, на который нужно добавить обхект
  */
-void Area_insert_GameObject(Area area, GameObject *game_object, int z);
+void area_insert_GameObject(Area area, GameObject *game_object);
 
 /**
  * TODO
@@ -41,8 +45,11 @@ void Area_insert_GameObject(Area area, GameObject *game_object, int z);
  * @param obj Объект, который нужно сдвинуть
  * @param dx Сдвиг по x
  * @param dy Сдвиг по y
+ * @returns Результат сдвига: <br>
+ * 0 - ОК<br>
+ * 1 - Ошибка
  */
-extern void GameObject_move(GameObject *obj, Area area, int dx, int dy);
+extern int area_GameObject_move(GameObject *obj, Area area, int dx, int dy);
 
 /**
  * TODO
@@ -51,7 +58,10 @@ extern void GameObject_move(GameObject *obj, Area area, int dx, int dy);
  * @param obj Объект которому нужно поменять координаты
  * @param x новая координата по x
  * @param y новая координата по y
+ * @returns Результат телепорта: <br>
+ * 0 - ОК <br>
+ * 1 - Ошибка
  */
-extern void GameObject_teleport(GameObject *obj, Area area, int x, int y);
+extern int area_GameObject_teleport(GameObject *obj, Area area, int x, int y);
 
 #endif //SGM_SRC_GAME_AREA_H_

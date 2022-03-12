@@ -21,18 +21,18 @@ View *View_new(Area *area, int x, int y, int width, int height) {
   return view;
 }
 
-Position View_get_pos(View *view) {
+Position view_get_pos(View *view) {
   return view->pos;
 }
 
-int View_get_width(View *view) {
+int view_get_width(View *view) {
   return view->width;
 }
 
-int View_get_height(View *view) {
+int view_get_height(View *view) {
   return view->height;
 }
 
-extern GameObject *View_get_GameObject(View *view, int x, int y, int z) {
+extern GameObject *view_get_GameObject(View *view, int x, int y, int z) {
   return (*view->area)[x][y][z];
 }

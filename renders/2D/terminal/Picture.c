@@ -12,15 +12,15 @@ Picture Picture_new(int width, int height) {
   return indexes;
 }
 
-Pixel Picture_get_pixel(Picture picture, int x, int y) {
+Pixel picture_get_pixel(Picture picture, int x, int y) {
   return *picture[x][y];
 }
 
-Pixel *Picture_get_pixel_ptr(Picture picture, int x, int y) {
+Pixel *picture_get_pixel_ptr(Picture picture, int x, int y) {
   return picture[x][y];
 }
 
-void Picture_set_pixel(Picture picture, int x, int y, Pixel *pixel) {
+void picture_set_pixel(Picture picture, int x, int y, Pixel *pixel) {
   picture[x][y] = pixel;
 //  picture[x][y]
 }

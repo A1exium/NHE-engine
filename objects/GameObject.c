@@ -26,6 +26,21 @@ GameObjectType gameObject_get_type(GameObject *obj) {
   return obj->type;
 }
 
-void GameObject_set_type(GameObject *obj, GameObjectType new_type) {
+void gameObject_set_type(GameObject *obj, GameObjectType new_type) {
   obj->type = new_type;
+}
+
+void gameObject_move(GameObject *obj, int dx, int dy) {
+  obj->pos.x += dx;
+  obj->pos.y += dy;
+}
+
+int gameObject_get_x(GameObject *obj) {
+  return obj->pos.x;
+}
+int gameObject_get_y(GameObject *obj) {
+  return obj->pos.y;
+}
+int gameObject_get_z(GameObject *obj) {
+  return obj->pos.z;
 }

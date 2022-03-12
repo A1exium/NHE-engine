@@ -28,8 +28,9 @@ const int TEXTURE_RATIO = 3;
 #include <stdio.h>
 #include "Pixel.h"
 
-void Render_render(Render *render) {
+void render_render(Render *render) {
 
+  printf("\033[1;1H\033[2J\n");
   Texture *PLAYER_TEXTURE = Texture_load(fopen("../assets/player.nsd", "r"));
   Texture *NISHAL_TEXTURE = Texture_load(fopen("../assets/nishal.nsd", "r"));
   Texture *TILE_TEXTURE = Texture_load(fopen("../assets/tile.nsd", "r"));
@@ -38,13 +39,13 @@ void Render_render(Render *render) {
   Picture pic = Picture_new(render->width, render->height);
   foreach(view_item, render->screen)
   {
-    View *view = ListItem_get(view_item);
-    Position view_pos = View_get_pos(view);
-    for (int x = view_pos.x; x < View_get_width(view); x++) {
-      for (int y = view_pos.y; y < View_get_height(view); y++) {
+    View *view = listItem_get(view_item);
+    Position view_pos = view_get_pos(view);
+    for (int x = view_pos.x; x < view_get_width(view); x++) {
+      for (int y = view_pos.y; y < view_get_height(view); y++) {
         for (int z = 0; z < AREA_MAX_Z; z++) {
           Texture *cur_texture;
-          GameObject *cur_obj = View_get_GameObject(view, x, y, z);
+          GameObject *cur_obj = view_get_GameObject(view, x, y, z);
           if (cur_obj) {
             GameObjectType c_type = gameObject_get_type(cur_obj);
             switch (c_type) {
@@ -67,9 +68,9 @@ void Render_render(Render *render) {
             }
             for (int tx = 0; tx < TEXTURE_RATIO; tx++) {
               for (int ty = 0; ty < TEXTURE_RATIO; ty++) {
-                Pixel *cur_pixel = Texture_get_pixel_ptr(cur_texture, tx, ty);
+                Pixel *cur_pixel = texture_get_pixel_ptr(cur_texture, tx, ty);
                 if (cur_pixel->symbol != ' ')
-                  Picture_set_pixel(pic, x * TEXTURE_RATIO + tx, y * TEXTURE_RATIO + ty, cur_pixel);
+                  picture_set_pixel(pic, x * TEXTURE_RATIO + tx, y * TEXTURE_RATIO + ty, cur_pixel);
               }
             }
           }

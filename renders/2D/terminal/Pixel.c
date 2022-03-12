@@ -55,6 +55,6 @@ Pixel Pixel_from(char sym, enum Colors color, enum Colors bg_color) {
   return pixel;
 }
 
-int Pixel_is_empty(Pixel *pix) {
+int pixel_is_empty(Pixel *pix) {
   return pix->color == Transparent && pix->bg_color == Transparent;
 }

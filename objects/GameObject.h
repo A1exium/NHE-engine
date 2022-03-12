@@ -58,7 +58,7 @@ extern GameObject *GameObject_new(GameObjectType type, int x, int y, int z);
  * Освобождает память объекта, удаляет его из всех связанных с ним структур(из area, из group)
  * @param gameobject Игровой объект
  */
-extern void GameObject_free(GameObject *gameobject);
+extern void gameObject_free(GameObject *gameobject);
 
 /**
  * Возвращает тип объекта. Нужно для корректной работы других функций
@@ -66,5 +66,11 @@ extern void GameObject_free(GameObject *gameobject);
  * @return Тип заданного объекта
  */
 extern GameObjectType gameObject_get_type(GameObject *obj);
+
+extern int gameObject_get_x(GameObject *obj);
+extern int gameObject_get_y(GameObject *obj);
+extern int gameObject_get_z(GameObject *obj);
+
+void gameObject_move(GameObject *obj, int dx, int dy);
 
 #endif //SGM_SRC_GAME_GAMEOBJECT_H_

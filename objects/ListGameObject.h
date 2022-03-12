@@ -22,14 +22,14 @@ ListGameObject ListGameObject_new();
  * Отчищает память всех его элементов, если их нет в area???
  * @param list Удаляемый список
  */
-extern void ListGameObject_free(ListGameObject list);
+extern void listGameObject_free(ListGameObject list);
 
 /**
  * Добавляет GameObject * в список
  * @param list Список, в который нужно добавить объект
  * @param game_object Добавляемый объект
  */
-extern void ListGameObject_add(ListGameObject list, GameObject *game_object);
+extern void listGameObject_add(ListGameObject list, GameObject *game_object);
 
 /**
  * TODO
@@ -38,6 +38,6 @@ extern void ListGameObject_add(ListGameObject list, GameObject *game_object);
  * @param game_object Удаляемый объект
  * @return Удаляемый объект?????
  */
-extern GameObject *ListGameObject_remove(ListGameObject list, GameObject *game_object);
+extern GameObject *listGameObject_remove(ListGameObject list, GameObject *game_object);
 
 #endif //SGM_SRC_GAME_LISTGAMEOBJECT_H_

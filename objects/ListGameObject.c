@@ -12,11 +12,11 @@ ListGameObject ListGameObject_new() {
 // Отчищает память объекта
 // ЗАГЛУШКА
 // TODO: сделать по описанию в ListGameObject.h
-void ListGameObject_free(ListGameObject list) {
-  List_free(list);
+void listGameObject_free(ListGameObject list) {
+  list_free(list);
 }
 
 // Добавляет GameObject * в список
-void ListGameObject_add(ListGameObject list, GameObject *game_object) {
-  List_add(list, game_object);
+void listGameObject_add(ListGameObject list, GameObject *game_object) {
+  list_add(list, game_object);
 };
