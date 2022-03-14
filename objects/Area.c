@@ -11,27 +11,54 @@ void Area_init(Area area) {
         area[x][y][z] = 0;
 }
 
-GameObject *area_get_object(Area area, int x, int y, int z) {
+GameObject *area_get(Area area, int x, int y, int z) {
   return area[x][y][z];
 }
 
-extern GameObject *area_pop_object(Area area, int x, int y, int z) {
+extern GameObject *area_pop(Area area, int x, int y, int z) {
   GameObject *obj = area[x][y][z];
   area[x][y][z] = 0;
   return obj;
 }
 
-void area_insert_GameObject(Area area, GameObject *game_object) {
-  area[gameObject_get_x(game_object)][gameObject_get_y(game_object)][gameObject_get_z(game_object)] = game_object;
+extern GameObject *area_pop_object(Area area, GameObject *game_object) {
+  Position pos = gameObject_get_pos(game_object);
+  return area_pop(area, pos.x, pos.y, pos.z);
 }
 
-int area_GameObject_move(GameObject *obj, Area area, int dx, int dy) {
-  GameObject *area_obj = area_pop_object(area, gameObject_get_x(obj), gameObject_get_y(obj), gameObject_get_z(obj));
-  if (obj == area_obj) {
-    gameObject_move(obj, dx, dy);
+extern GameObject *area_get_by_object(Area area, GameObject *game_object) {
+  Position pos = gameObject_get_pos(game_object);
+  return area_get(area, pos.x, pos.y, pos.z);
+}
 
-    area_insert_GameObject(area, obj);
-    return 0;
+extern int area_check_object(Area area, GameObject *game_object) {
+  return game_object == area_get_by_object(area, game_object);
+}
+
+int area_insert_GameObject(Area area, GameObject *game_object) {
+  Position pos = gameObject_get_pos(game_object);
+  if (pos.x < AREA_MAX_X && pos.y < AREA_MAX_Y && pos.z < AREA_MAX_Z) {
+    GameObject *ref =
+        area[pos.x][pos.y][pos.z];
+    if (ref == 0) {
+      area[pos.x][pos.y][pos.z] = game_object;
+      return 0;
+    }
   }
   return 1;
+}
+
+int area_GameObject_move(GameObject *obj, Area area, int dx, int dy, int dz) {
+  int ret_code = 0;
+  if (area_check_object(area, obj)) {
+    area_pop_object(area, obj);
+    gameObject_change_cords(obj, dx, dy, dz);
+    ret_code = area_insert_GameObject(area, obj);
+  } else {
+    gameObject_change_cords(obj, dx, dy, dz);
+    if (area_get_by_object(area, obj) == 0) {
+      ret_code = area_insert_GameObject(area, obj);
+    }
+  }
+  return ret_code;
 }

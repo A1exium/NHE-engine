@@ -7,11 +7,12 @@
 
 #include "View.h"
 #include "Screen.h"
+#include "TextureStorage.h"
 
 struct Render_s;
 typedef struct Render_s Render;
 
-extern Render *Render_new(Screen screen, int width, int height);
+extern Render *Render_new(Screen screen, TextureStorage, int width, int height);
 
 extern void render_render(Render *render);
 

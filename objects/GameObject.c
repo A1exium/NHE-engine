@@ -30,17 +30,26 @@ void gameObject_set_type(GameObject *obj, GameObjectType new_type) {
   obj->type = new_type;
 }
 
-void gameObject_move(GameObject *obj, int dx, int dy) {
-  obj->pos.x += dx;
-  obj->pos.y += dy;
+extern Position gameObject_get_pos(GameObject *obj) {
+  return obj->pos;
 }
 
-int gameObject_get_x(GameObject *obj) {
-  return obj->pos.x;
+extern void gameObject_set_pos(GameObject *obj, Position new_pos) {
+  obj->pos = new_pos;
 }
-int gameObject_get_y(GameObject *obj) {
-  return obj->pos.y;
+
+extern void gameObject_set_cords(GameObject *obj, int x, int y, int z) {
+  obj->pos.x = x;
+  obj->pos.y = y;
+  obj->pos.z = z;
 }
-int gameObject_get_z(GameObject *obj) {
-  return obj->pos.z;
+
+int get_remainder(int num, int rem) {
+  return (num * (-1 * (num < 0))) % rem;
+}
+
+void gameObject_change_cords(GameObject *obj, int dx, int dy, int dz) {
+  obj->pos.x += dx;
+  obj->pos.y += dy;
+  obj->pos.z += dz;
 }

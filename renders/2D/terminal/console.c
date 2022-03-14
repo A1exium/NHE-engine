@@ -7,7 +7,7 @@
 #include "renders/2D/terminal/win/ascii_colors.h"
 
 void print(Picture pic, int height, int width) {
-  for (int y = height - 1; y >= 0; y--) {
+  for (int y = 0; y < height; y++) {
     for (int x = 0; x < width; x++) {
       Pixel tmp = picture_get_pixel(pic, x, y);
 //      puts(tmp.bg_color);

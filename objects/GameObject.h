@@ -5,6 +5,8 @@
 #ifndef SGM_SRC_GAME_GAMEOBJECT_H_
 #define SGM_SRC_GAME_GAMEOBJECT_H_
 
+#include "../geometry/Position.h"
+
 //! Всевозможные типы объектов
 enum GameObjectType_t;
 
@@ -67,10 +69,36 @@ extern void gameObject_free(GameObject *gameobject);
  */
 extern GameObjectType gameObject_get_type(GameObject *obj);
 
-extern int gameObject_get_x(GameObject *obj);
-extern int gameObject_get_y(GameObject *obj);
-extern int gameObject_get_z(GameObject *obj);
+/**
+ * Возвращает позицию объекта
+ * @param obj
+ * @return позицию объекта
+ */
+extern Position gameObject_get_pos(GameObject *obj);
 
-void gameObject_move(GameObject *obj, int dx, int dy);
+/**
+ * Заменяет позицию на заданную
+ * @param obj объект
+ * @param new_pos новая позиция
+ */
+extern void gameObject_set_pos(GameObject *obj, Position new_pos);
+
+/**
+ * Заменить координаты в объекте
+ * @param obj объект
+ * @param x
+ * @param y
+ * @param z
+ */
+extern void gameObject_set_cords(GameObject *obj, int x, int y, int z);
+
+/**
+ * Сдвинуть координаты объекта
+ * @param obj объект
+ * @param dx сдвиг по x
+ * @param dy сдвиг по y
+ * @param dz сдвиг по z
+ */
+void gameObject_change_cords(GameObject *obj, int dx, int dy, int dz);
 
 #endif //SGM_SRC_GAME_GAMEOBJECT_H_

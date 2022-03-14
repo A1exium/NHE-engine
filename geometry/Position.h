@@ -46,7 +46,7 @@ extern Position Position_new(int x, int y, int z);
  * @param z
  * @return
  */
-extern void position_set(int x, int y, int z);
+extern void position_set(Position *pos, int x, int y, int z);
 
 /**
  * Сдвигает каждую координату по заданным значениям
@@ -54,6 +54,12 @@ extern void position_set(int x, int y, int z);
  * @param dy сдвиг по у
  * @param dz сдвиг по z
  */
-extern void position_move(int dx, int dy, int dz);
+extern void position_change_cords(Position *pos, int dx, int dy, int dz);
+
+extern int position_get_x(Position pos);
+
+extern int position_get_y(Position pos);
+
+extern int position_get_z(Position pos);
 
 #endif //SGM_SRC_GAME_POSITION_H_

@@ -8,6 +8,7 @@
 #include "base/Screen.h"
 #include "base/Render.h"
 #include "base/View.h"
+#include "base/TextureStorage.h"
 
 extern void initCurrentRender();
 
