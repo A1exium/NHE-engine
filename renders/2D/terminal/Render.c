@@ -48,9 +48,10 @@ void render_render(Render *render) {
 
             for (int tx = 0; tx < TEXTURE_RATIO; tx++) {
               for (int ty = 0; ty < TEXTURE_RATIO; ty++) {
-                Pixel *cur_pixel = texture_get_pixel_ptr(cur_texture, tx, ty);
-                if (cur_pixel->symbol != ' ')
-                  picture_set_pixel(pic, x * TEXTURE_RATIO + tx, y * TEXTURE_RATIO + ty, cur_pixel);
+                Pixel cur_pixel = texture_get_pixel(cur_texture, tx, ty);
+//                if (cur_pixel.symbol != ' ')
+//                  picture_set_pixel(pic, x * TEXTURE_RATIO + tx, y * TEXTURE_RATIO + ty, cur_pixel);
+                pixel_intersect_with(picture_get_pixel_ptr(pic, x * TEXTURE_RATIO + tx, y * TEXTURE_RATIO + ty), cur_pixel);
               }
             }
           }

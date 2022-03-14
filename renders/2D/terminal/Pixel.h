@@ -24,4 +24,6 @@ struct Pixel_s {
 
 extern Pixel Pixel_from(char sym, enum Colors color, enum Colors bg_color);
 
+extern void pixel_intersect_with(Pixel *pixel, Pixel new_pixel);
+
 #endif //SGM_SRC_ENGINE_RENDERS_2D_TERMINAL_PIXEL_H_
