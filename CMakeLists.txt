@@ -19,12 +19,12 @@ add_library(NHE SHARED
         renders/2D/mod.h
         )
 
-# add render
 add_subdirectory(renders/2D/terminal)
-target_link_libraries(NHE Term-graphics)
-
 target_include_directories(NHE PUBLIC tools)
 # TODO: Remove const from engine
 target_include_directories(NHE PRIVATE ../globals)
 
 set_target_properties(NHE PROPERTIES PUBLIC_HEADER engine.h)
+
+# Build with terminal graphics
+target_link_libraries(NHE Term-graphics)
