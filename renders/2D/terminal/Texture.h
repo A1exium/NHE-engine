@@ -5,7 +5,6 @@
 #ifndef SGM_SRC_ENGINE_RENDERS_2D_DEFAULT_TEXTURE_H_
 #define SGM_SRC_ENGINE_RENDERS_2D_DEFAULT_TEXTURE_H_
 
-#include <stdio.h>
 #include "Pixel.h"
 
 struct Texture_s;
@@ -13,7 +12,7 @@ typedef struct Texture_s Texture;
 
 Texture *Texture_new(int width, int height);
 
-extern Texture *Texture_load(FILE *file);
+extern Texture *Texture_load(char *file_name);
 
 extern void texture_set_pixel(Texture *texture, Pixel pixel, int x, int y);
 

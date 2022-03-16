@@ -14,6 +14,8 @@ typedef struct Render_s Render;
 
 extern Render *Render_new(Screen screen, TextureStorage, int width, int height);
 
+extern void render_set_textureStorage(Render *render, TextureStorage);
+
 extern void render_render(Render *render);
 
 #endif //SGM_SRC_ENGINE_RENDERS_2D_SCREEN_RENDER_H_

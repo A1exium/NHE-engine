@@ -5,6 +5,7 @@
 #include "Texture.h"
 #include "../../../tools/2DArray.h"
 #include "Pixel.h"
+#include <stdio.h>
 
 struct Texture_s {
   Pixel **pix;
@@ -31,8 +32,9 @@ Pixel *texture_get_pixel_ptr(Texture *texture, int x, int y) {
   return &texture->pix[x][y];
 }
 
-extern Texture *Texture_load(FILE *file) {
+extern Texture *Texture_load(char *file_name) {
   int w, h;
+  FILE *file = fopen(file_name, "r");
   fscanf(file, "%d %d", &w, &h);
   fgetc(file);
   Texture *txt = Texture_new(w, h);
