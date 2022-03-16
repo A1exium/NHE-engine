@@ -4,7 +4,7 @@
 
 #include "console.h"
 #include <stdio.h>
-#include "renders/2D/terminal/win/ascii_colors.h"
+#include "ascii_colors.h"
 
 void print(Picture pic, int height, int width) {
   for (int y = 0; y < height; y++) {

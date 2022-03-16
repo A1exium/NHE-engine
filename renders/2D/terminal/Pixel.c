@@ -3,7 +3,7 @@
 //
 
 #include "Pixel.h"
-#include "renders/2D/terminal/win/ascii_colors.h"
+#include "ascii_colors.h"
 
 char *bgcolor_translate(enum Colors bgcolor) {
   switch (bgcolor) {
