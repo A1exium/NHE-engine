@@ -10,6 +10,8 @@
 #include "../base/Texture.h"
 #include "Render.h"
 
+#define IMG_EXT "png"
+
 typedef SDL_Texture Texture;
 extern void *Texture_load(Render *render, const char *file_name);
 

@@ -7,5 +7,6 @@
 
 #include "Render.h"
 extern void *Texture_load(Render *render, const char *file_name);
+char *fileName_add_ext(const char *file_name);
 
 #endif //SGM_SRC_ENGINE_RENDERS_2D_BASE_TEXTURE_H_

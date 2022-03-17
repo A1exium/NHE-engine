@@ -2,7 +2,7 @@
 // Created by alexium on 06.03.2022.
 //
 
-#include "Texture.h"
+#include "./Texture.h"
 #include "../../../tools/2DArray.h"
 #include "Pixel.h"
 #include <stdio.h>
@@ -28,13 +28,26 @@ Pixel texture_get_pixel(Texture *texture, int x, int y) {
   return texture->pix[x][y];
 }
 
-Pixel *texture_get_pixel_ptr(Texture *texture, int x, int y) {
-  return &texture->pix[x][y];
+//Pixel *texture_get_pixel_ptr(Texture *texture, int x, int y) {
+//  return &texture->pix[x][y];
+//}
+
+#include "string.h"
+
+char *fileName_add_ext(const char *file_name) {
+  char *new_fname = malloc(sizeof(file_name) + sizeof(".nsd"));
+  new_fname[0] = '\0';
+  strcat(new_fname, file_name);
+  strcat(new_fname, ".nsd");
+  return new_fname;
 }
 
-extern Texture *Texture_load(char *file_name) {
+extern void *Texture_load(Render *render, const char *file_name) {
+//extern Texture *Texture_load(char *file_name) {
   int w, h;
-  FILE *file = fopen(file_name, "r");
+  char *fname_with_ext = fileName_add_ext(file_name);
+  FILE *file = fopen(fname_with_ext, "r");
+  free(fname_with_ext);
   fscanf(file, "%d %d", &w, &h);
   fgetc(file);
   Texture *txt = Texture_new(w, h);

@@ -16,6 +16,10 @@ struct Render_s {
   int height;
 };
 
+extern void render_set_textureStorage(Render *render, TextureStorage texture_storage) {
+  render->textures = texture_storage;
+}
+
 Render *Render_new(Screen screen, TextureStorage texture_storage, int width, int height) {
   Render *render = (Render *) malloc(sizeof(Render));
   render->height = height;
