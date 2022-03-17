@@ -34,11 +34,6 @@ Render *Render_new(Screen screen, TextureStorage texture_storage, int width, int
 
   int window_flags = 0;
 
-  if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-    printf("Couldn't initialize SDL: %s\n", SDL_GetError());
-    exit(1);
-  }
-
   render->window = SDL_CreateWindow("Main",
                                     SDL_WINDOWPOS_UNDEFINED,
                                     SDL_WINDOWPOS_UNDEFINED,

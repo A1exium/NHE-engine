@@ -12,7 +12,7 @@ add_library(SDL-graphics STATIC
 if(EMSCRIPTEN)
     target_compile_options(SDL-graphics PUBLIC -sUSE_SDL=2 -sUSE_SDL_IMAGE=2)
     target_compile_options(SDL-graphics PUBLIC -O3)
-    target_link_options(SDL-graphics PUBLIC -sUSE_SDL=2 -sUSE_SDL_IMAGE=2)
+    target_link_options(SDL-graphics PUBLIC -sUSE_SDL=2 -sUSE_SDL_IMAGE=2 -sASYNCIFY)
     target_link_options(SDL-graphics PUBLIC -sSDL2_IMAGE_FORMATS=["png"] -sGL_UNSAFE_OPTS=0)
     target_link_options(SDL-graphics PUBLIC -O3)
 else()
