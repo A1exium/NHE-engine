@@ -11,6 +11,6 @@
 #include "Render.h"
 
 typedef SDL_Texture Texture;
-extern void *Texture_load(const char *file_name, Render *render);
+extern void *Texture_load(Render *render, const char *file_name);
 
 #endif //SGM_SRC_ENGINE_RENDERS_2D_DEFAULT_TEXTURE_H_
