@@ -13,7 +13,7 @@ ListGameObject ListGameObject_new() {
 // ЗАГЛУШКА
 // TODO: сделать по описанию в ListGameObject.h
 void listGameObject_free(ListGameObject list) {
-  list_free(list);
+  list_free(list, gameObject_free);
 }
 
 // Добавляет GameObject * в список

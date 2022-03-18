@@ -53,3 +53,7 @@ void gameObject_change_cords(GameObject *obj, int dx, int dy, int dz) {
   obj->pos.y += dy;
   obj->pos.z += dz;
 }
+
+void gameObject_free(GameObject *gameobject) {
+  free(gameobject);
+}

@@ -13,3 +13,7 @@ Screen Screen_new(View *view) {
 void Screen_add_layer(Screen screen, View *view) {
   list_add(screen, view);
 }
+
+extern void screen_free(Screen screen) {
+  list_free(screen, view_free);
+}

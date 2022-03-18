@@ -9,10 +9,12 @@
 
 typedef void **TextureStorage;
 
-TextureStorage TextureStorage_new(int capacity);
+extern TextureStorage TextureStorage_new(int capacity);
+
+extern void textureStorage_free(TextureStorage);
 
 void *textureStorage_get(TextureStorage texture_storage, GameObjectType type);
 
-void textureStorage_insert(TextureStorage ts, GameObjectType type, void *texture);
+extern void textureStorage_insert(TextureStorage ts, GameObjectType type, void *texture);
 
 #endif //SGM_SRC_ENGINE_RENDERS_2D_BASE_TEXTURESTORAGE_H_

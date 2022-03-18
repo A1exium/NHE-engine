@@ -14,6 +14,8 @@ typedef struct Render_s Render;
 
 extern Render *Render_new(Screen screen, TextureStorage, int width, int height);
 
+extern void Render_free(Render *);
+
 extern void render_set_textureStorage(Render *render, TextureStorage);
 
 extern void render_render(Render *render);

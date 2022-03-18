@@ -34,9 +34,11 @@ extern ListItem *list_next(ListItem *item);
 extern List *List_new();
 
 /**
- * Удаляет список и все объекты в нем
+ * Удаляет список. И все объекты в зависимости от параметров
+ * @param list Удаляемый список
+ * @param object_free_function Если не null, то применяется к каждому объекту
  */
-extern void list_free(List *list);
+extern void list_free(List *list, void (*object_free_function)(void *));
 
 /**
  * Добавляет ListItem в список

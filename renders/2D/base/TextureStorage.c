@@ -9,6 +9,10 @@ TextureStorage TextureStorage_new(int capacity) {
   return malloc(sizeof(void *) * capacity);
 }
 
+extern void textureStorage_free(TextureStorage texture_storage) {
+  free(texture_storage);
+}
+
 void *textureStorage_get(TextureStorage texture_storage, GameObjectType type) {
   return texture_storage[type];
 }

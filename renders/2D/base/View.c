@@ -21,6 +21,10 @@ View *View_new(Area *area, int x, int y, int width, int height) {
   return view;
 }
 
+void view_free(View *view) {
+  free(view);
+}
+
 Position view_get_pos(View *view) {
   return view->pos;
 }

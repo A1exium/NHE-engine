@@ -20,10 +20,12 @@ typedef List *Screen;
  */
 extern Screen Screen_new(View *view);
 
+extern void screen_free(Screen);
+
 /**
  * Добавляет новый View на экран
  * @param view ссылка на добавляемый View
  */
-extern void screen_add_layer(Screen screen, View *view);
+extern void screen_add_layer(Screen, View *);
 
 #endif //SGM_SRC_ENGINE_RENDERS_2D_BASE_SCREEN_H_

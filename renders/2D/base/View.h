@@ -40,6 +40,8 @@ typedef struct View_s View;
  */
 extern View *View_new(Area *area, int x, int y, int width, int height);
 
+extern void view_free(View *);
+
 /**
  * Возвращает позицию участка
  * Атрибут \b pos у структуры

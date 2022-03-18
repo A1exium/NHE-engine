@@ -71,7 +71,7 @@ int pixel_is_empty(Pixel *pix) {
 void pixel_intersect_with(Pixel *pixel, Pixel new_pixel) {
   if (pixel->bg_color == bgcolor_translate(Transparent))
     pixel->bg_color = new_pixel.bg_color;
-  if (pixel->color == color_translate(Transparent))
+  if (new_pixel.color != color_translate(Transparent))
     pixel->color = new_pixel.color;
   if (new_pixel.symbol != ' ')
     pixel->symbol = new_pixel.symbol;
