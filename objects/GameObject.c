@@ -44,10 +44,6 @@ extern void gameObject_set_cords(GameObject *obj, int x, int y, int z) {
   obj->pos.z = z;
 }
 
-int get_remainder(int num, int rem) {
-  return (num * (-1 * (num < 0))) % rem;
-}
-
 void gameObject_change_cords(GameObject *obj, int dx, int dy, int dz) {
   obj->pos.x += dx;
   obj->pos.y += dy;
