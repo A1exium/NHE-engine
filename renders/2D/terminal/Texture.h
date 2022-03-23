@@ -8,6 +8,8 @@
 #include "Pixel.h"
 #include "../base/Texture.h"
 
+#define IMG_EXT "nsd"
+
 struct Texture_s;
 typedef struct Texture_s Texture;
 

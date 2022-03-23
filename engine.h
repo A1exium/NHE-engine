@@ -10,5 +10,7 @@
 #include "renders/2D/mod.h"
 #include "tools/2DArray.h"
 #include "tools/List.h"
+#include "texture_formats.h"
+#include "events/mod.h"
 
 #endif //SGM_SRC_ENGINE_ENGINE_H_

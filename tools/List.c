@@ -65,4 +65,3 @@ ListItem *list_next(ListItem *item) {
 void *listItem_get(ListItem *item) {
   return item->value;
 }
-

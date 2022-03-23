@@ -43,22 +43,22 @@ Pixel texture_get_pixel(Texture *texture, int x, int y) {
 //  return &texture->pix[x][y];
 //}
 
-#include "string.h"
-
-char *fileName_add_ext(const char *file_name) {
-  char *new_fname = malloc(sizeof(file_name) + sizeof(".nsd") - sizeof(char));
-  new_fname[0] = '\0';
-  strcat(new_fname, file_name);
-  strcat(new_fname, ".nsd");
-  return new_fname;
-}
+//#include "string.h"
+//
+//char *fileName_add_ext(const char *file_name) {
+//  char *new_fname = malloc(sizeof(file_name) + sizeof(".nsd") - sizeof(char));
+//  new_fname[0] = '\0';
+//  strcat(new_fname, file_name);
+//  strcat(new_fname, ".nsd");
+//  return new_fname;
+//}
 
 extern void *Texture_load(Render *render, const char *file_name) {
 //extern Texture *Texture_load(char *file_name) {
   int w, h;
-  char *fname_with_ext = fileName_add_ext(file_name);
-  FILE *file = fopen(fname_with_ext, "r");
-  free(fname_with_ext);
+//  char *fname_with_ext = fileName_add_ext(file_name);
+  FILE *file = fopen(file_name, "r");
+//  free(fname_with_ext);
   fscanf(file, "%d %d", &w, &h);
   fgetc(file);
   Texture *txt = Texture_new(w, h);

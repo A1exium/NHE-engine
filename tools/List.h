@@ -70,7 +70,7 @@ extern ListItem *list_get(List list, int index);
  * Удаляет элемент под индексом \b index и возвращает его
  * @param list список
  * @param index индекс удаляемого элемента
- * @return Элемент под индексом \b index
+ * @return Элемент под индексом \b index.
  */
 extern ListItem *list_pop(List list, int index);
 

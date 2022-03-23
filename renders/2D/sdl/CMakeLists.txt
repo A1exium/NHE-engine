@@ -7,7 +7,9 @@ add_library(SDL-graphics STATIC
         Render.c
         Texture.c Texture.h
         init_sdl.c
-        )
+        export/texture_formats.h)
+
+target_include_directories(SDL-graphics PUBLIC ./export)
 
 if(EMSCRIPTEN)
     target_compile_options(SDL-graphics PUBLIC -sUSE_SDL=2 -sUSE_SDL_IMAGE=2)

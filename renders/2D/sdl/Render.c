@@ -6,6 +6,29 @@
 #include <stdlib.h>
 #include "Texture.h"
 #include <stdio.h>
+#include "../events/event_provider.h"
+
+extern void provideEvents() {
+
+  SDL_Event event;
+  while (SDL_PollEvent(&event))
+  {
+    Event catched_event;
+    switch (event.type)
+    {
+      case SDL_QUIT:
+        exit(0);
+        break;
+      case SDL_KEYDOWN:
+        catched_event.type = Keyboard;
+        catched_event.key = event.key.keysym.sym;
+        Event_throw(catched_event);
+        break;
+      default:
+        break;
+    }
+  }
+}
 
 struct Render_s {
   Screen screen;
