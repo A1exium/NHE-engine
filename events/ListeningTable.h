@@ -10,11 +10,11 @@
 #define LT_KEY_MAX
 
 typedef void **HashTable;
-typedef void (*EventCallback)(void *);
 typedef struct EventCallbackArgs_s {
   void **storage;
   int length;
 } EventCallbackArgs;
+typedef void (*EventCallback)(EventCallbackArgs);
 
 typedef struct PackedFunction_s {
   EventCallback f;
@@ -31,12 +31,6 @@ extern EventCallbackArgs EventCallbackArgs_pack(int argc, void *arg,...);
 
 void listeningTable_call(Event event);
 
-//#define Arg_unpack(ECA, counter, VarName, ...) \
-//  VarName = ECA[counter];                      \
-//  if (counter > 0)                             \
-//    Arg_unpack(ECA, counter - 1, __VA_ARGS__)
-//
-//#define EventCallbackArgs_unpack(ECA, VarName, ...) \
-//  Arg_unpack(ECA, (ECA).length, __VA_ARGS__)
+extern void EventCallbackArgs_unpack(EventCallbackArgs _args, ...);
 
 #endif //SGM_SRC_ENGINE_EVENTS_LISTENINGTABLE_H_
