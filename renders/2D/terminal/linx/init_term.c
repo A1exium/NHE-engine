@@ -13,5 +13,4 @@ void initCurrentRender() {
   raw.c_cc[VMIN] = 0;
   raw.c_cc[VTIME] = 1;
   tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw);
-
 }
