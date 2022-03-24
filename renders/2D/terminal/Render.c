@@ -4,10 +4,14 @@
 
 #include "../base/Render.h"
 #include <stdlib.h>
-#include "../../../objects/GameObject.h"
 #include "Texture.h"
 #include "Picture.h"
 #include "console.h"
+#include "../events/event_provider.h"
+
+extern void provideEvents() {
+
+}
 
 struct Render_s {
   Screen screen;

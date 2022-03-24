@@ -3,15 +3,17 @@ project(Term-graphics C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_library(Term-graphics STATIC
+add_library(Term-graphics SHARED
         colors.h
         console.c console.h
         Picture.c Picture.h
         Pixel.c Pixel.h
         Render.c
         Texture.c Texture.h
+        export/texture_formats.h
         )
 
+target_include_directories(Term-graphics PUBLIC ./export)
 target_include_directories(Term-graphics PRIVATE ../base)
 target_include_directories(Term-graphics PUBLIC ../../../tools)
 
