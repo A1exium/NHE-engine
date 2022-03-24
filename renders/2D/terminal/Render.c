@@ -9,8 +9,42 @@
 #include "console.h"
 #include "../events/event_provider.h"
 
-extern void provideEvents() {
+#include <unistd.h>
+#include <stdio.h>
+#include <poll.h>
 
+
+extern void provideEvents() {
+//  fd_set fd_all_collection, fd_ready_to_read_collection;
+//  int maxfd = STDIN_FILENO + 1;
+//  FD_ZERO(&fd_all_collection);
+//  FD_SET(STDIN_FILENO, &fd_all_collection);
+//  struct timeval tv;
+//  tv.tv_sec = 1;
+//  tv.tv_usec = 0;
+//
+//  fd_ready_to_read_collection = fd_all_collection;
+//
+//  select(maxfd, &fd_ready_to_read_collection, NULL, NULL, 0);
+//
+//  if (FD_ISSET(STDIN_FILENO, &fd_ready_to_read_collection)) {
+
+//  fd_set fds;
+//  FD_ZERO(&fds);
+//  FD_SET(&fds, STDIN_FILENO);
+//  if (poll(STDIN_FILENO + 1, &fds, 1) == 1)
+//    Event event;
+//    event.type = Keyboard;
+//    event.key = getchar();
+//    Event_throw(event);
+//  }
+int tmp = '\0';
+  if (read(STDIN_FILENO, &tmp, 1) == 1) {
+  Event event;
+    event.type = Keyboard;
+    event.key = tmp;
+    Event_throw(event);
+  }
 }
 
 struct Render_s {
@@ -47,7 +81,6 @@ Render *Render_new(Screen screen, TextureStorage texture_storage, int width, int
 
 void render_render(Render *render) {
 
-  printf("\033[1;1H\033[2J\n");
 
   Picture pic = Picture_new(render->width, render->height);
   foreach(view_item, render->screen) {
