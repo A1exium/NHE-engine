@@ -8,9 +8,9 @@
 void initCurrentRender() {
   struct termios raw;
   tcgetattr(STDIN_FILENO, &raw);
-  raw.c_lflag &= ~(ECHO | ICANON | FNDELAY);
-  raw.c_lflag |= FNONBLOCK;
+  raw.c_lflag &= ~(ECHO | ICANON | O_NONBLOCK);
+//  raw.c_lflag |= FNONBLOCK;
   raw.c_cc[VMIN] = 0;
-  raw.c_cc[VTIME] = 1;
+  raw.c_cc[VTIME] = 0;
   tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw);
 }

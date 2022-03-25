@@ -9,16 +9,16 @@
 #include "console.h"
 #include "../events/event_provider.h"
 
-//#include <unistd.h>
+#include <unistd.h>
 
 extern void provideEvents() {
-//  int tmp = '\0';
-//  if (read(STDIN_FILENO, &tmp, 1) == 1) {
-//  Event event;
-//    event.type = Keyboard;
-//    event.key = tmp;
-//    Event_throw(event);
-//  }
+  int tmp = '\0';
+  if (read(STDIN_FILENO, &tmp, 1) == 1) {
+  Event event;
+    event.type = Keyboard;
+    event.key = tmp;
+    Event_throw(event);
+  }
 }
 
 struct Render_s {
@@ -57,8 +57,7 @@ void render_render(Render *render) {
 
 
   Picture pic = Picture_new(render->width, render->height);
-  foreach(view_item, render->screen) {
-    View *view = listItem_get(view_item);
+  foreach(View *view, view, render->screen) {
     Position view_pos = view_get_pos(view);
     Texture *cur_texture = Texture_new(render_get_width(render) / view_get_width(view), render_get_height(render) / view_get_height(view));
     for (int x = view_pos.x; x < view_get_width(view); x++) {
