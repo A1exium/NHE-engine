@@ -11,6 +11,6 @@
 #include "tools/2DArray.h"
 #include "tools/List.h"
 #include "texture_formats.h"
-#include "events/mod.h"
+#include "events/mod_pub.h"
 
 #endif //SGM_SRC_ENGINE_ENGINE_H_

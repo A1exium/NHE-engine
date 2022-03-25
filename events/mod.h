@@ -5,10 +5,7 @@
 #ifndef SGM_SRC_ENGINE_EVENTS_MOD_H_
 #define SGM_SRC_ENGINE_EVENTS_MOD_H_
 
-#include "event_loop.h"
-#include "ListeningTable.h"
-
-HashTable listeningTable;
-EventPool eventPool;
+#include "Event.h"
+#include "event_provider.h"
 
 #endif //SGM_SRC_ENGINE_EVENTS_MOD_H_

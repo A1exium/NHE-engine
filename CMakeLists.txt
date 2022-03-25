@@ -23,9 +23,12 @@ add_library(NHE SHARED
         events/event_loop.c events/event_loop.h
         events/EventPool.c events/EventPool.h
         events/ListeningTable.c events/ListeningTable.h
-        events/mod.h
-        events/event_provider.h)
-
+        events/event_provider.h
+        events/EventCallbackArgs.c events/EventCallbackArgs.h
+        events/EventCallback.c events/EventCallback.h
+        events/PackedFunction.c events/PackedFunction.h
+        events/mod.h events/mod_pub.h
+        events/mod_init.h events/mod_init.c)
 
 target_include_directories(NHE PUBLIC tools)
 # TODO: Remove const from engine

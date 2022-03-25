@@ -86,8 +86,9 @@ void render_render(Render *render) {
   int ratio_x = render->width / AREA_MAX_X, ratio_y = render->height / AREA_MAX_Y;
   SDL_SetRenderDrawColor(render->renderer, 96, 128, 255, 255);
   SDL_RenderClear(render->renderer);
-  foreach(view_item, render->screen) {
-    View *view = listItem_get(view_item);
+//  View *view = 0;
+  foreach(View *view = 0, view, render->screen) {
+//    View *view = listItem_get(view_item);
     Position view_pos = view_get_pos(view);
     for (int x = view_pos.x; x < view_get_width(view); x++) {
       for (int y = view_pos.y; y < view_get_height(view); y++) {

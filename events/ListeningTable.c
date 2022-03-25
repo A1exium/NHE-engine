@@ -3,6 +3,7 @@
 //
 
 #include "ListeningTable.h"
+#include "PackedFunction.h"
 #include "Event.h"
 #include <stdlib.h>
 #include <stdarg.h>
@@ -12,10 +13,6 @@ void ListeningTable_init() {
   listeningTable[Keyboard] = calloc(sizeof(HashTable), EVENT_TYPE_KEYBOARD_COUNT);
   listeningTable[Mouse] = calloc(sizeof(HashTable), EVENT_TYPE_MOUSE_COUNT);
   listeningTable[LoopEvent] = 0;
-}
-
-void packedFunction_call(PackedFunction pf) {
-  pf->f(pf->args);
 }
 
 void listeningTable_call(Event event) {

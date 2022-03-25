@@ -25,6 +25,4 @@ typedef struct Event_s {
   int click_type;
 } Event;
 
-
-
 #endif //SGM_SRC_ENGINE_EVENTS_EVENT_H_

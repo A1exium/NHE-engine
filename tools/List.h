@@ -87,7 +87,8 @@ extern void *listItem_get(ListItem *item);
  * @param var Переменная, ззначение которой = элемент списка
  * @param List Указатель на перебираемый список
  */
-#define foreach(var, List) \
-  for(ListItem *(var) = list_first(List); (var) != 0; (var) = list_next(var))
+#define foreach(var_definition, var, List) \
+  var_definition;                                     \
+  for(ListItem *(__var) = list_first(List);((__var) != 0) && ((var) = listItem_get(__var)); (__var) = list_next(__var))
 
 #endif //SGM_SRC_TOOLS_LIST_H_

@@ -37,7 +37,7 @@ void sleep_ms(int milliseconds){ // cross-platform sleep function
 
 extern Render *GLOBAL_RENDER;
 
-_Noreturn void startEventLoop() {
+_Noreturn void start_event_loop() {
   Event loop_event;
   loop_event.type = LoopEvent;
   while (1 + 1 == 2) {

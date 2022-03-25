@@ -16,8 +16,6 @@ typedef struct EventPool_s {
 
 extern EventPool eventPool;
 
-void EventPool_create();
-
 extern void Event_throw(Event new_event);
 
 extern int Event_drain(Event *event_var);
