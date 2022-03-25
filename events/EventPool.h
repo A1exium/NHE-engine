@@ -18,6 +18,6 @@ extern EventPool eventPool;
 
 extern void Event_throw(Event new_event);
 
-extern int Event_drain(Event *event_var);
+int Event_drain(Event *event_var);
 
 #endif //SGM_SRC_ENGINE_EVENTS_EVENTPOOL_H_

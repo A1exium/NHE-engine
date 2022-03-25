@@ -10,5 +10,6 @@
 #include "Event.h"
 
 extern void addEventListener(Event target, EventCallback, EventCallbackArgs);
+extern void Event_throw(Event new_event);
 
 #endif //SGM_SRC_ENGINE_EVENTS_MOD_PUB_H_

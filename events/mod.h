@@ -7,5 +7,6 @@
 
 #include "Event.h"
 #include "event_provider.h"
+#include "EventPool.h"
 
 #endif //SGM_SRC_ENGINE_EVENTS_MOD_H_
