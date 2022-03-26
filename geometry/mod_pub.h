@@ -1,0 +1,8 @@
+//
+// Created by alexium on 26.03.2022.
+//
+
+#ifndef SGM_SRC_ENGINE_GEOMETRY_MOD_PUB_H_
+#define SGM_SRC_ENGINE_GEOMETRY_MOD_PUB_H_
+
+#endif //SGM_SRC_ENGINE_GEOMETRY_MOD_PUB_H_

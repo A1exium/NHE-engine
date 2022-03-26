@@ -3,7 +3,7 @@ project(Term-graphics C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_library(Term-graphics SHARED
+add_library(Term-graphics STATIC#SHARED
         colors.h
         console.c console.h
         Picture.c Picture.h
