@@ -16,7 +16,7 @@
 //  return new_fname;
 //}
 //
-extern void *Texture_load(Render *render, const char *file_name) {
+extern void *Texture_load(Render render, const char *file_name) {
 
   SDL_Texture *txt;
 //  char *fname_with_ext = fileName_add_ext(file_name);

@@ -9,16 +9,16 @@
 #include "console.h"
 #include "../events/event_provider.h"
 
-//#include <unistd.h>
+#include <unistd.h>
 
 extern void provideEvents() {
-//  int tmp = '\0';
-//  if (read(STDIN_FILENO, &tmp, 1) == 1) {
-//  Event event;
-//    event.type = Keyboard;
-//    event.key = tmp;
-//    Event_throw(event);
-//  }
+  int tmp = '\0';
+  if (read(STDIN_FILENO, &tmp, 1) == 1) {
+  Event event;
+    event.type = Keyboard;
+    event.key = tmp;
+    Event_throw(event);
+  }
 }
 
 struct Render_s {
@@ -28,19 +28,19 @@ struct Render_s {
   int height;
 };
 
-extern void render_set_textureStorage(Render *render, TextureStorage texture_storage) {
+extern void render_set_textureStorage(Render render, TextureStorage texture_storage) {
   render->textures = texture_storage;
 }
 
-int render_get_width(Render *render) {
+int render_get_width(Render render) {
   return render->width;
 }
-int render_get_height(Render *render) {
+int render_get_height(Render render) {
   return render->height;
 }
 
-Render *Render_new(Screen screen, TextureStorage texture_storage, int width, int height) {
-  Render *render = (Render *) malloc(sizeof(Render));
+Render Render_new(Screen screen, TextureStorage texture_storage, int width, int height) {
+  Render render = malloc(sizeof(struct Render_s));
   render->height = height;
   render->textures = texture_storage;
   render->width = width;
@@ -52,18 +52,19 @@ Render *Render_new(Screen screen, TextureStorage texture_storage, int width, int
 
 #include <stdio.h>
 #include "Pixel.h"
+#include "../../globals/const.h"
 
-void render_render(Render *render) {
+void render_render(Render render) {
 
 
   Picture pic = Picture_new(render->width, render->height);
-  foreach(View *view, view, render->screen) {
+  foreach(View view, view, render->screen) {
     Position view_pos = view_get_pos(view);
     Texture *cur_texture = Texture_new(render_get_width(render) / view_get_width(view), render_get_height(render) / view_get_height(view));
     for (int x = view_pos.x; x < view_get_width(view); x++) {
       for (int y = view_pos.y; y < view_get_height(view); y++) {
         for (int z = 0; z < AREA_MAX_Z; z++) {
-          GameObject *cur_obj = view_get_GameObject(view, x, y, z);
+          GameObject cur_obj = view_get_GameObject(view, x, y, z);
           if (cur_obj) {
 
             texture_from_texture(cur_texture, textureStorage_get(render->textures, gameObject_get_type(cur_obj)));
@@ -85,6 +86,6 @@ void render_render(Render *render) {
   print(pic, render->height, render->width);
 }
 
-extern void Render_free(Render *render) {
+extern void Render_free(Render render) {
   free(render);
 }

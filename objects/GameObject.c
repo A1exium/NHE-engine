@@ -4,52 +4,69 @@
 
 #include "GameObject.h"
 #include <stdlib.h>
-#include "ListGameObject.h"
 #include "../geometry/Position.h"
 
-struct s_GameObject {
+struct GameObject_s {
   GameObjectType type;
-  ListGameObject *group;
+  Area area;
   void *properties;
   Position pos;
 };
 
-GameObject *GameObject_new(GameObjectType type, int x, int y, int z) {
-  GameObject *obj = (GameObject *) malloc(sizeof(GameObject));
+GameObject GameObject_new(GameObjectType type, int x, int y, int z) {
+  GameObject obj = malloc(sizeof(struct GameObject_s));
   obj->type = type;
-  obj->group = 0;
+  obj->area = 0;
   obj->pos = Position_new(x, y, z);
   return obj;
 }
 
-GameObjectType gameObject_get_type(GameObject *obj) {
+GameObjectType gameObject_get_type(GameObject obj) {
   return obj->type;
 }
 
-void gameObject_set_type(GameObject *obj, GameObjectType new_type) {
+void gameObject_set_type(GameObject obj, GameObjectType new_type) {
   obj->type = new_type;
 }
 
-extern Position gameObject_get_pos(GameObject *obj) {
+Position gameObject_get_pos(GameObject obj) {
   return obj->pos;
 }
 
-extern void gameObject_set_pos(GameObject *obj, Position new_pos) {
-  obj->pos = new_pos;
+int gameObject_set_cords(GameObject obj, int x, int y, int z) {
+  if (obj->area) {
+    if (area_get(obj->area, x, y, z) == 0) {
+      Area tmp_area = obj->area;
+      area_pop_object(tmp_area, obj);
+      position_set(&obj->pos, x, y, z);
+      area_insert_GameObject(tmp_area, obj);
+      return 0;
+    }
+    return 1;
+  } else {
+    position_set(&obj->pos, x, y, z);
+    return 0;
+  }
 }
 
-extern void gameObject_set_cords(GameObject *obj, int x, int y, int z) {
-  obj->pos.x = x;
-  obj->pos.y = y;
-  obj->pos.z = z;
+int gameObject_set_pos(GameObject obj, Position new_pos) {
+  return gameObject_set_cords(obj, new_pos.x, new_pos.y, new_pos.z);
 }
 
-void gameObject_change_cords(GameObject *obj, int dx, int dy, int dz) {
-  obj->pos.x += dx;
-  obj->pos.y += dy;
-  obj->pos.z += dz;
+int gameObject_change_cords(GameObject obj, int dx, int dy, int dz) {
+  Position tmp_pos = obj->pos;
+  position_change_cords(&tmp_pos, dx, dy, dz);
+  return gameObject_set_pos(obj, tmp_pos);
 }
 
-void gameObject_free(GameObject *gameobject) {
+void GameObject_free(GameObject gameobject) {
   free(gameobject);
+}
+
+extern Area gameObject_get_area(GameObject game_object) {
+  return game_object->area;
+}
+
+extern void gameObject_set_area(GameObject game_object, Area area) {
+  game_object->area = area;
 }

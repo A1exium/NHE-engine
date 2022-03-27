@@ -8,6 +8,6 @@
 #include "../base/Render.h"
 #include <SDL2/SDL.h>
 
-SDL_Renderer *Render_get_sdlRenderer(Render *render);
+SDL_Renderer *Render_get_sdlRenderer(Render render);
 
 #endif //SGM_SRC_ENGINE_RENDERS_2D_SDL_RENDER_H_

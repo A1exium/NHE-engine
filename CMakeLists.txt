@@ -7,12 +7,14 @@ add_library(NHE STATIC#SHARED
         tools/List.c tools/List.h
         tools/2DArray.c tools/2DArray.h
         tools/serializer.c tools/serializer.h
+
         geometry/Position.c geometry/Position.h
-        geometry/mod.h
+        geometry/mod.h geometry/mod_pub.h
+
         objects/Area.c objects/Area.h
         objects/GameObject.c objects/GameObject.h
-        objects/ListGameObject.c objects/ListGameObject.h
-        objects/mod.c objects/mod.h
+        objects/mod.h
+        objects/mod_pub.h objects/mod_pub.c
         renders/2D/base/Screen.c
         renders/2D/base/TextureStorage.c
         renders/2D/base/View.c
@@ -28,7 +30,7 @@ add_library(NHE STATIC#SHARED
         events/EventCallback.c events/EventCallback.h
         events/PackedFunction.c events/PackedFunction.h
         events/mod.h events/mod_pub.h
-        events/mod_init.h events/mod_init.c geometry/mod_pub.h)
+        events/mod_init.h events/mod_init.c )
 
 target_include_directories(NHE PUBLIC tools)
 # TODO: Remove const from engine

@@ -4,7 +4,7 @@
 
 #include "Screen.h"
 
-Screen Screen_new(View *view) {
+Screen Screen_new(View view) {
   Screen screen = (Screen)List_new();
   list_add(screen, view);
   return screen;

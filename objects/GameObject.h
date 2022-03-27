@@ -6,6 +6,8 @@
 #define SGM_SRC_GAME_GAMEOBJECT_H_
 
 #include "../geometry/Position.h"
+#include "Area.h"
+typedef struct Area_s *Area;
 
 //! Всевозможные типы объектов
 enum GameObjectType_t;
@@ -27,8 +29,8 @@ typedef int GameObjectType;
 /** @var GameObjectType \b type
  * - Тип объекта
  */
-/** @var ListGameObject \b *group
- * - Массив / Множество, где хранится объект помимо \b Area
+/** @var Area \b area
+ * - поле, где находится объект
  */
 /** @var int \b x
  * - Координата по \p x
@@ -42,46 +44,51 @@ typedef int GameObjectType;
 /** @typedef GameObject
  *  - Тип для удобного использования структуры
  */
-struct s_GameObject;
-typedef struct s_GameObject GameObject;
+struct GameObject_s;
+typedef struct GameObject_s *GameObject;
 
 /**
- * Создает новый объект возвращает указатель на него
+ * Создает новый объект и возвращает его
  * @param type Тип нового объекта
  * @param x координата x
  * @param y координата y
  * @param z слой.
  * @return Указатель на созданный \b GameObject
  */
-extern GameObject *GameObject_new(GameObjectType type, int x, int y, int z);
+extern GameObject GameObject_new(GameObjectType type, int x, int y, int z);
 
 /**
- * TODO
- * Освобождает память объекта, удаляет его из всех связанных с ним структур(из area, из group)
+ * Освобождает память объекта
  * @param gameobject Игровой объект
  */
-extern void gameObject_free(GameObject *gameobject);
+extern void GameObject_free(GameObject game_object);
+
+extern Area gameObject_get_area(GameObject game_object);
+
+extern void gameObject_set_area(GameObject game_object, Area area);
 
 /**
  * Возвращает тип объекта. Нужно для корректной работы других функций
  * @param obj Сам объект
  * @return Тип заданного объекта
  */
-extern GameObjectType gameObject_get_type(GameObject *obj);
+extern GameObjectType gameObject_get_type(GameObject obj);
 
 /**
  * Возвращает позицию объекта
  * @param obj
  * @return позицию объекта
  */
-extern Position gameObject_get_pos(GameObject *obj);
+extern Position gameObject_get_pos(GameObject obj);
 
 /**
  * Заменяет позицию на заданную
  * @param obj объект
  * @param new_pos новая позиция
+ * @returns 0 - Ок: \n;
+ * 1 - Ошибка
  */
-extern void gameObject_set_pos(GameObject *obj, Position new_pos);
+extern int gameObject_set_pos(GameObject obj, Position new_pos);
 
 /**
  * Заменить координаты в объекте
@@ -89,16 +96,20 @@ extern void gameObject_set_pos(GameObject *obj, Position new_pos);
  * @param x
  * @param y
  * @param z
+ * @returns 0 - Ок \n
+ * 1 - Ошибка
  */
-extern void gameObject_set_cords(GameObject *obj, int x, int y, int z);
+extern int gameObject_set_cords(GameObject obj, int x, int y, int z);
 
 /**
- * Сдвинуть координаты объекта
+ * Сдвинуть объект на координаты
  * @param obj объект
  * @param dx сдвиг по x
  * @param dy сдвиг по y
  * @param dz сдвиг по z
+ * @returns 0 - Ок \n
+ * 1 - Ошибка
  */
-void gameObject_change_cords(GameObject *obj, int dx, int dy, int dz);
+int gameObject_change_cords(GameObject obj, int dx, int dy, int dz);
 
 #endif //SGM_SRC_GAME_GAMEOBJECT_H_

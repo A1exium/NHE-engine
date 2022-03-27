@@ -39,16 +39,16 @@ struct Render_s {
   SDL_Window *window;
 };
 
-SDL_Renderer *Render_get_sdlRenderer(Render *render) {
+SDL_Renderer *Render_get_sdlRenderer(Render render) {
   return render->renderer;
 }
 
-extern void render_set_textureStorage(Render *render, TextureStorage texture_storage) {
+extern void render_set_textureStorage(Render render, TextureStorage texture_storage) {
   render->textures = texture_storage;
 }
 
-Render *Render_new(Screen screen, TextureStorage texture_storage, int width, int height) {
-  Render *render = (Render *) malloc(sizeof(Render));
+Render Render_new(Screen screen, TextureStorage texture_storage, int width, int height) {
+  Render render =  malloc(sizeof(struct Render_s));
   render->height = height;
   render->textures = texture_storage;
   render->width = width;
@@ -82,18 +82,20 @@ Render *Render_new(Screen screen, TextureStorage texture_storage, int width, int
   return render;
 }
 
-void render_render(Render *render) {
+#include "../../globals/const.h"
+
+void render_render(Render render) {
   int ratio_x = render->width / AREA_MAX_X, ratio_y = render->height / AREA_MAX_Y;
   SDL_SetRenderDrawColor(render->renderer, 96, 128, 255, 255);
   SDL_RenderClear(render->renderer);
 //  View *view = 0;
-  foreach(View *view = 0, view, render->screen) {
+  foreach(View view = 0, view, render->screen) {
 //    View *view = listItem_get(view_item);
     Position view_pos = view_get_pos(view);
     for (int x = view_pos.x; x < view_get_width(view); x++) {
       for (int y = view_pos.y; y < view_get_height(view); y++) {
         for (int z = 0; z < AREA_MAX_Z; z++) {
-          GameObject *cur_obj = view_get_GameObject(view, x, y, z);
+          GameObject cur_obj = view_get_GameObject(view, x, y, z);
           if (cur_obj) {
             SDL_Rect obj;
             Texture *cur_texture = textureStorage_get(render->textures, gameObject_get_type(cur_obj));

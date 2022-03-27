@@ -26,7 +26,7 @@
 /** @typedef View
  *  - Тип для удобного использования структуры
  */
-typedef struct View_s View;
+typedef struct View_s *View;
 
 /**
  * TODO: Стандартизируйте координаты!
@@ -38,9 +38,9 @@ typedef struct View_s View;
  * @param height - высота участка
  * @return - указатель на View(участок)
  */
-extern View *View_new(Area *area, int x, int y, int width, int height);
+extern View View_new(Area area, int x, int y, int width, int height);
 
-extern void view_free(View *);
+extern void view_free(View);
 
 /**
  * Возвращает позицию участка
@@ -48,21 +48,21 @@ extern void view_free(View *);
  * @param view - Участок, позиция которого нужна
  * @return Позиция участка
  */
-extern Position view_get_pos(View *view);
+extern Position view_get_pos(View view);
 
 /**
  * Возвращает ширину участка
  * @param view - Участок
  * @return ширину участка
  */
-extern int view_get_width(View *view);
+extern int view_get_width(View view);
 
 /**
  * Возвращает высоту участка
  * @param view - Участок
  * @return высоту участка
  */
-extern int view_get_height(View *view);
+extern int view_get_height(View view);
 
 /**
  * Возвращает объект из Участка
@@ -73,6 +73,6 @@ extern int view_get_height(View *view);
  * @param z - Координата \p z (слой) в Area[x][y]
  * @return Ссылка на игровой объект
  */
-extern GameObject *view_get_GameObject(View *view, int x, int y, int z);
+extern GameObject view_get_GameObject(View view, int x, int y, int z);
 
 #endif //SGM_SRC_ENGINE_RENDERS_SCREEN_VIEW_H_

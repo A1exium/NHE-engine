@@ -53,7 +53,7 @@ Pixel texture_get_pixel(Texture *texture, int x, int y) {
 //  return new_fname;
 //}
 
-extern void *Texture_load(Render *render, const char *file_name) {
+extern void *Texture_load(Render render, const char *file_name) {
 //extern Texture *Texture_load(char *file_name) {
   int w, h;
 //  char *fname_with_ext = fileName_add_ext(file_name);

@@ -34,7 +34,7 @@ void sleep_ms(int milliseconds){ // cross-platform sleep function
 #endif
 }
 
-extern Render *GLOBAL_RENDER;
+extern Render GLOBAL_RENDER;
 
 _Noreturn void start_event_loop() {
   Event loop_event;

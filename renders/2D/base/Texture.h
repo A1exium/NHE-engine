@@ -8,7 +8,7 @@
 #include "Render.h"
 #define IMG_EXT
 
-extern void *Texture_load(Render *render, const char *file_name);
+extern void *Texture_load(Render render, const char *file_name);
 char *fileName_add_ext(const char *file_name);
 #define get_asset_path(file) "assets/" file "." IMG_EXT
 
