@@ -5,7 +5,9 @@
 #ifndef SGM_SRC_ENGINE_RENDERS_SCREEN_VIEW_H_
 #define SGM_SRC_ENGINE_RENDERS_SCREEN_VIEW_H_
 
-#include "../../../objects/Area.h"
+typedef struct Area_s *Area;
+typedef struct GameObject_s *GameObject;
+//#include "../../../objects/Area.h"
 #include "../../../geometry/Position.h"
 
 /** @struct View_s View.h View.c

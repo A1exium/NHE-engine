@@ -4,6 +4,7 @@
 
 #include "View.h"
 #include <stdlib.h>
+#include "../../../objects/mod.h"
 
 struct View_s {
   Area area;

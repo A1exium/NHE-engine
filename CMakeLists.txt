@@ -21,7 +21,7 @@ add_library(NHE STATIC#SHARED
 #        renders/2D/base/Texture.h
         renders/2D/mod.h
 
-        events/Event.c events/Event.h
+        events/Event.h
         events/event_loop.c events/event_loop.h
         events/EventPool.c events/EventPool.h
         events/ListeningTable.c events/ListeningTable.h

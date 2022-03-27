@@ -5,7 +5,7 @@
 #ifndef SGM_SRC_ENGINE_EVENTS_EVENT_H_
 #define SGM_SRC_ENGINE_EVENTS_EVENT_H_
 
-#include "../objects/GameObject.h"
+typedef struct GameObject_s *GameObject;
 
 #define EVENT_TYPE_COUNT 3
 #define EVENT_TYPE_KEYBOARD_COUNT 256

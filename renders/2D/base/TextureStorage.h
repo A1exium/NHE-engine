@@ -5,7 +5,9 @@
 #ifndef SGM_SRC_ENGINE_RENDERS_2D_BASE_TEXTURESTORAGE_H_
 #define SGM_SRC_ENGINE_RENDERS_2D_BASE_TEXTURESTORAGE_H_
 
-#include "../../../objects/GameObject.h"
+//#include "../../../objects/GameObject.h"
+typedef struct GameObject_s *GameObject;
+typedef int GameObjectType;
 
 typedef void **TextureStorage;
 
