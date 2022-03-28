@@ -18,11 +18,13 @@ target_include_directories(Term-graphics PRIVATE ../base)
 target_include_directories(Term-graphics PUBLIC ../../../tools)
 
 IF (WIN32)
-#    target_sources(Term-graphics PRIVATE win/init_term.c  ascii_colors.h)
-    target_sources(Term-graphics PRIVATE win/init_term.c)
-#    target_include_directories(Term-graphics PRIVATE win)
+    target_sources(Term-graphics PRIVATE
+            win/init_term.c
+            win/eventProvider.c
+            )
 ELSE()
-#    target_sources(Term-graphics PRIVATE linx/init_term.c  linx/ascii_colors.h)
-    target_sources(Term-graphics PRIVATE linx/init_term.c)
-#    target_include_directories(Term-graphics PRIVATE linx)
+    target_sources(Term-graphics PRIVATE
+            linx/init_term.c
+            linx/eventProvider.c
+            )
 ENDIF()
