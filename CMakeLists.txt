@@ -3,7 +3,7 @@ project(NHE C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_library(NHE STATIC#SHARED
+add_library(NHE-base STATIC#SHARED
         tools/List.c tools/List.h
         tools/2DArray.c tools/2DArray.h
         tools/serializer.c tools/serializer.h
@@ -30,18 +30,22 @@ add_library(NHE STATIC#SHARED
         events/EventCallback.c events/EventCallback.h
         events/PackedFunction.c events/PackedFunction.h
         events/mod.h events/mod_pub.h
-        events/mod_init.h events/mod_init.c )
+        events/mod_init.h events/mod_init.c
+        )
 
-target_include_directories(NHE PUBLIC tools)
+#add_library(NHE-term STATIC)
+#target_link_libraries(NGE-term NHE-base)
+
+target_include_directories(NHE-base PUBLIC tools)
 # TODO: Remove const from engine
-target_include_directories(NHE PRIVATE ../globals)
+target_include_directories(NHE-base PRIVATE ../globals)
 
-set_target_properties(NHE PROPERTIES PUBLIC_HEADER engine.h)
+set_target_properties(NHE-base PROPERTIES PUBLIC_HEADER engine.h)
 
 # Build with terminal graphics
  add_subdirectory(renders/2D/terminal)
- target_link_libraries(NHE Term-graphics)
+# target_link_libraries(NHE-term Term-graphics)
 
 # Build with sdl
-#add_subdirectory(renders/2D/sdl)
+add_subdirectory(renders/2D/sdl)
 #target_link_libraries(NHE SDL-graphics)
