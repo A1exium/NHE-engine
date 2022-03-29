@@ -40,13 +40,13 @@ _Noreturn void start_event_loop() {
   Event loop_event;
   loop_event.type = LoopEvent;
   while (1 + 1 == 2) {
-    render_render(GLOBAL_RENDER);
     provideEvents();
     Event_throw(loop_event);
     Event event;
     while (Event_drain(&event)) {
       listeningTable_call(event);
     }
+    render_render(GLOBAL_RENDER);
     sleep_ms(100);
   }
 }
