@@ -43,9 +43,12 @@ target_include_directories(NHE-base PRIVATE ../globals)
 set_target_properties(NHE-base PROPERTIES PUBLIC_HEADER engine.h)
 
 # Build with terminal graphics
- add_subdirectory(renders/2D/terminal)
+if (RENDER STREQUAL "sdl")
+	add_subdirectory(renders/2D/sdl)
+else()
+	add_subdirectory(renders/2D/terminal)
+endif()
 # target_link_libraries(NHE-term Term-graphics)
 
 # Build with sdl
-add_subdirectory(renders/2D/sdl)
 #target_link_libraries(NHE SDL-graphics)
