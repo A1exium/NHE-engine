@@ -43,10 +43,13 @@ target_include_directories(NHE-base PRIVATE ../globals)
 set_target_properties(NHE-base PROPERTIES PUBLIC_HEADER engine.h)
 
 # Build with terminal graphics
+include(../../cfg/CMakeLists.txt)
 if (RENDER STREQUAL "sdl")
-	add_subdirectory(renders/2D/sdl)
+	add_subdirectory(./renders/2D/sdl)
+	target_link_libraries(NHE-base SDL-graphics)
 else()
-	add_subdirectory(renders/2D/terminal)
+	add_subdirectory(./renders/2D/terminal)
+	target_link_libraries(NHE-base Term-graphics)
 endif()
 # target_link_libraries(NHE-term Term-graphics)
 
