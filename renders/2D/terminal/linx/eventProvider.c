@@ -8,7 +8,7 @@
 
 extern void provideEvents() {
   int tmp = '\0';
-  if (read(STDIN_FILENO, &tmp, 1) == 1) {
+  while (read(STDIN_FILENO, &tmp, 1) == 1) {
     Event event;
     event.type = Keyboard;
     event.key = tmp;
