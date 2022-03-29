@@ -5,7 +5,6 @@
 #include "Render.h"
 #include <stdlib.h>
 #include "Texture.h"
-#include <stdio.h>
 #include "../events/event_provider.h"
 
 extern void provideEvents() {
@@ -83,6 +82,7 @@ Render Render_new(Screen screen, TextureStorage texture_storage, int width, int 
 }
 
 #include "../../globals/const.h"
+#include "../objects/mod.h"
 
 void render_render(Render render) {
   int ratio_x = render->width / AREA_MAX_X, ratio_y = render->height / AREA_MAX_Y;
