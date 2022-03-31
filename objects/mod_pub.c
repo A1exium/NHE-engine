@@ -3,8 +3,7 @@
 //
 
 #include "mod_pub.h"
-#include "GameObject.h"
-#include "Area.h"
+#include "mod.h"
 
 // Создает игровой объект(GameObject) и помещает его в список в зависимости от типа type;
 GameObject createGameObject(Area area, GameObjectType type, int x, int y, int z, List class) {

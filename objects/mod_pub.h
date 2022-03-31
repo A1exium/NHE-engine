@@ -7,6 +7,8 @@
 
 #include "../tools/List.h"
 
+typedef struct Position_s Position;
+
 enum GameObjectType_t;
 
 typedef int GameObjectType;
@@ -34,6 +36,57 @@ extern GameObject createGameObject(Area area, GameObjectType type, int x, int y,
  */
 extern Area Area_new(unsigned int size_X, unsigned int size_Y, unsigned int size_Z);
 
-extern void gameObject_move(GameObject, int dx, int dy, int dz);
+/**
+ * Возвращает объект по заданным координатам
+ * @param area
+ * @param x
+ * @param y
+ * @param z
+ * @return объект по координатам
+ */
+extern GameObject area_get(Area area, int x, int y, int z);
+
+/**
+ * Возвращает объект по заданной позиции или 0, если там ничего нет
+ * @param area
+ * @param position
+ * @return Объект или 0, если объекта нет
+ */
+extern GameObject area_get_by_pos(Area area, Position position);
+
+/**
+ * Удаляет объект с поля по заданным координатам и возвращает указатель на него
+ * @param area
+ * @param x
+ * @param y
+ * @param z
+ * @return удаленный объект
+ */
+extern GameObject area_pop(Area area, int x, int y, int z);
+
+/**
+ * Удаляет объект с поля по самому объекту
+ * @param area
+ * @param game_object удаляемый объект
+ * @return удаленный с поля объект
+ */
+extern GameObject area_pop_object(Area area, GameObject game_object);
+
+/**
+ * Возвращает тип объекта. Нужно для корректной работы других функций
+ * @param obj Сам объект
+ * @return Тип заданного объекта
+ */
+extern GameObjectType gameObject_get_type(GameObject obj);
+
+/**
+ * Возвращает позицию объекта
+ * @param obj
+ * @return позицию объекта
+ */
+extern Position gameObject_get_pos(GameObject obj);
+
+extern void gameObject_move(GameObject game_object, int dx, int dy, int dz);
+
 
 #endif //SGM_SRC_ENGINE_OBJECTS_MOD_PUB_H_

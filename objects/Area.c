@@ -58,7 +58,7 @@ extern GameObject area_get_by_pos(Area area, Position position) {
 
 extern GameObject area_pop(Area area, int x, int y, int z) {
   GameObject obj = area->area[x][y][z];
-  gameObject_set_area(obj, 0);
+//  gameObject_set_area(obj, 0);
   area->area[x][y][z] = 0;
   return obj;
 }
@@ -74,7 +74,7 @@ int area_insert_GameObject(Area area, GameObject game_object) {
     GameObject ref = area_get_by_pos(area, pos);
     if (ref == 0) {
       area->area[pos.x][pos.y][pos.z] = game_object;
-      gameObject_set_area(game_object, area);
+//      gameObject_set_area(game_object, area);
       return 0;
     }
   }
