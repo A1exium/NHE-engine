@@ -39,24 +39,32 @@ extern Render GLOBAL_RENDER;
 #include "network/server/server.h"
 #include "network/client/client.h"
 
-_Noreturn void start_event_loop() {
+void event_frame() {
   Event loop_event;
   loop_event.type = LoopEvent;
+  if (SERVER_STATUS == 1) {
+    serverListen();
+    serverServe();
+  }
+  if (CLIENT_STATUS == 1) {
+    clientProvideEvents();
+  }
+  provideEvents();
+  Event_throw(loop_event);
+  Event event;
+  while (Event_drain(&event)) {
+    listeningTable_call(event);
+  }
+  render_render(GLOBAL_RENDER);
+}
+
+_Noreturn void start_event_loop() {
+#ifdef __EMSCRIPTEN__
+  emscripten_set_main_loop(event_frame, 30, 1);
+#else
   while (1 + 1 == 2) {
-    if (SERVER_STATUS == 1) {
-      serverListen();
-      serverServe();
-    }
-    if (CLIENT_STATUS == 1) {
-      clientProvideEvents();
-    }
-    provideEvents();
-    Event_throw(loop_event);
-    Event event;
-    while (Event_drain(&event)) {
-      listeningTable_call(event);
-    }
-    render_render(GLOBAL_RENDER);
+    event_frame();
     sleep_ms(100);
   }
+#endif
 }

@@ -21,7 +21,7 @@ add_library(NHE-base STATIC#SHARED
 #        renders/2D/base/Texture.h
         renders/2D/mod.h
 
-        events/Event.h
+        events/Event.h events/Event.c
         events/event_loop.c events/event_loop.h
         events/EventPool.c events/EventPool.h
         events/ListeningTable.c events/ListeningTable.h
@@ -32,12 +32,11 @@ add_library(NHE-base STATIC#SHARED
         events/mod.h events/mod_pub.h
         events/mod_init.h events/mod_init.c
 
-		network/client/event_provider.c
+		network/client/event_provider.c network/client/client.h
 		network/client/client_init.c network/client/client_init.h
 		tools/SizedArray.c tools/SizedArray.h
-		events/Event.c network/server/server_init.c
-		network/server/server_init.h network/server/server.c
-		network/server/server.h network/client/client.h
+		network/server/server_init.c network/server/server_init.h
+		network/server/server.c network/server/server.h
         network/mod_pub.h network/mod_pub.c)
 
 #add_library(NHE-term STATIC)

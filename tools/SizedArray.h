@@ -9,7 +9,7 @@
 
 typedef struct Array_s *Array;
 
-Array Array_new(ssize_t length);
+Array Array_new(unsigned int length);
 
 void Array_free(Array array);
 

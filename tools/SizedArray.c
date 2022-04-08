@@ -6,10 +6,10 @@
 
 struct Array_s {
   void *array;
-  ssize_t length;
+  unsigned int length;
 };
 
-Array Array_new(ssize_t length) {
+Array Array_new(unsigned int length) {
   Array array = malloc(sizeof(struct Array_s));
   array->length = length;
   array->array = calloc(length, sizeof(void *));
