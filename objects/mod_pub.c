@@ -10,7 +10,7 @@ GameObject createGameObject(Area area, GameObjectType type, int x, int y, int z,
   GameObject game_object = GameObject_new(type, x, y, z);
   if (area) {
     area_insert_GameObject(area, game_object);
-//    gameObject_set_area(game_object, area);
+    gameObject_set_area(game_object, area);
   }
   if (class) {
     list_add(class, game_object);

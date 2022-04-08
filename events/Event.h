@@ -16,13 +16,17 @@ typedef enum EventType_t {
   Mouse = 1,
 //  ObjectClick,
   LoopEvent = 2,
+  Message = 3,
 } EventType;
 
 typedef struct Event_s {
   EventType type;
   int key;
-  GameObject *clicked_object;
   int click_type;
 } Event;
+
+int Event_serialize(Event event, char *dest);
+
+int Event_deserialize(char *src, Event *event);
 
 #endif //SGM_SRC_ENGINE_EVENTS_EVENT_H_

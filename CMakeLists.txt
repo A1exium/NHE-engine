@@ -31,7 +31,14 @@ add_library(NHE-base STATIC#SHARED
         events/PackedFunction.c events/PackedFunction.h
         events/mod.h events/mod_pub.h
         events/mod_init.h events/mod_init.c
-        )
+
+		network/client/event_provider.c
+		network/client/client_init.c network/client/client_init.h
+		tools/SizedArray.c tools/SizedArray.h
+		events/Event.c network/server/server_init.c
+		network/server/server_init.h network/server/server.c
+		network/server/server.h network/client/client.h
+        network/mod_pub.h network/mod_pub.c)
 
 #add_library(NHE-term STATIC)
 #target_link_libraries(NGE-term NHE-base)
@@ -39,6 +46,8 @@ add_library(NHE-base STATIC#SHARED
 target_include_directories(NHE-base PUBLIC tools)
 # TODO: Remove const from engine
 target_include_directories(NHE-base PRIVATE ../globals)
+
+target_include_directories(NHE-base PRIVATE .)
 
 set_target_properties(NHE-base PROPERTIES PUBLIC_HEADER engine.h)
 

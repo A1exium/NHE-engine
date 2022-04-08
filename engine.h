@@ -11,6 +11,7 @@
 #include "texture_formats.h"
 #include "events/mod_pub.h"
 #include "objects/mod_pub.h"
+#include "network/mod_pub.h"
 // TODO remove this
 //#include "objects/mod.h"
 

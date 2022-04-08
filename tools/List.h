@@ -89,6 +89,6 @@ extern void *listItem_get(ListItem item);
  */
 #define foreach(var_definition, var, List) \
   var_definition;                                     \
-  for(ListItem (__var) = list_first(List);((__var) != 0) && ((var) = listItem_get(__var)); (__var) = list_next(__var))
+  for(ListItem (__ ##var) = list_first(List);((__ ##var) != 0) && ((var) = listItem_get(__ ##var)); (__ ##var) = list_next(__ ##var))
 
 #endif //SGM_SRC_TOOLS_LIST_H_

@@ -36,10 +36,20 @@ void sleep_ms(int milliseconds){ // cross-platform sleep function
 
 extern Render GLOBAL_RENDER;
 
+#include "network/server/server.h"
+#include "network/client/client.h"
+
 _Noreturn void start_event_loop() {
   Event loop_event;
   loop_event.type = LoopEvent;
   while (1 + 1 == 2) {
+    if (SERVER_STATUS == 1) {
+      serverListen();
+      serverServe();
+    }
+    if (CLIENT_STATUS == 1) {
+      clientProvideEvents();
+    }
     provideEvents();
     Event_throw(loop_event);
     Event event;
