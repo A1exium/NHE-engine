@@ -40,8 +40,7 @@ extern Render GLOBAL_RENDER;
 #include "network/client/client.h"
 
 void event_frame() {
-  Event loop_event;
-  loop_event.type = LoopEvent;
+  Event loop_event = Event_new(EventLoop);
   if (SERVER_STATUS == 1) {
     serverListen();
     serverServe();

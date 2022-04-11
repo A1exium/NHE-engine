@@ -35,9 +35,9 @@ void serverSendAll(char *data, unsigned int data_len) {
   }
 }
 
-void serverSendEvent(Event event) {
+void serverSendEvent(Event event, int (*f)(void *, char *)) {
   char buf[1024];
-  ssize_t len = Event_serialize(event, buf);
+  ssize_t len = Event_serialize(event, f, buf);
   serverSendAll(buf, len);
 }
 

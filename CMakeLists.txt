@@ -22,6 +22,7 @@ add_library(NHE-base STATIC#SHARED
         renders/2D/mod.h
 
         events/Event.h events/Event.c
+		events/mod_pub.h
         events/event_loop.c events/event_loop.h
         events/EventPool.c events/EventPool.h
         events/ListeningTable.c events/ListeningTable.h
@@ -29,7 +30,7 @@ add_library(NHE-base STATIC#SHARED
         events/EventCallbackArgs.c events/EventCallbackArgs.h
         events/EventCallback.c events/EventCallback.h
         events/PackedFunction.c events/PackedFunction.h
-        events/mod.h events/mod_pub.h
+        events/mod.h
         events/mod_init.h events/mod_init.c
 
 		network/client/event_provider.c network/client/client.h

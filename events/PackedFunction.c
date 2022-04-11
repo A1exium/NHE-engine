@@ -4,7 +4,7 @@
 
 #include "PackedFunction.h"
 
-void packedFunction_call(PackedFunction pf) {
-  pf->f(pf->args);
+void packedFunction_call(Event call_event, PackedFunction pf) {
+  pf->f(call_event, pf->args);
 }
 

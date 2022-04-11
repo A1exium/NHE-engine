@@ -9,26 +9,26 @@
 
 void ListeningTable_init() {
   listeningTable = calloc(sizeof(HashTable), EVENT_TYPE_COUNT);
-  listeningTable[Keyboard] = calloc(sizeof(HashTable), EVENT_TYPE_KEYBOARD_COUNT);
-  listeningTable[Mouse] = calloc(sizeof(HashTable), EVENT_TYPE_MOUSE_COUNT);
-  listeningTable[LoopEvent] = 0;
+  listeningTable[EventKeyboard] = calloc(sizeof(HashTable), EVENT_TYPE_KEYBOARD_COUNT);
+  listeningTable[EventMouse] = calloc(sizeof(HashTable), EVENT_TYPE_MOUSE_COUNT);
+  listeningTable[EventLoop] = 0;
 }
 
 void listeningTable_call(Event event) {
   PackedFunction packed = 0;
   switch (event.type) {
-    case Mouse:
-    case Keyboard:
-      packed = ((HashTable)listeningTable[event.type])[event.key];
+    case EventMouse:
+    case EventKeyboard:
+      packed = ((HashTable)listeningTable[event.type])[event.payload.keyboard_event.key];
       break;
-    case LoopEvent:
-      packed = listeningTable[LoopEvent];
+    case EventLoop:
+      packed = listeningTable[EventLoop];
       break;
     default:
       break;
   }
   if (packed)
-    packedFunction_call(packed);
+    packedFunction_call(event, packed);
 }
 
 PackedFunction function_pack(EventCallback f, EventCallbackArgs args) {
@@ -41,17 +41,17 @@ PackedFunction function_pack(EventCallback f, EventCallbackArgs args) {
 
 extern void addEventListener(Event target, EventCallback func, EventCallbackArgs args) {
   switch (target.type) {
-    case Mouse:
-    case Keyboard: {
-      PackedFunction current_f = ((HashTable)listeningTable[Keyboard])[target.key];
+    case EventMouse:
+    case EventKeyboard: {
+      PackedFunction current_f = ((HashTable)listeningTable[EventKeyboard])[target.payload.keyboard_event.key];
       if (current_f) free(current_f);
-      ((HashTable)listeningTable[Keyboard])[target.key] = function_pack(func, args);
+      ((HashTable)listeningTable[EventKeyboard])[target.payload.keyboard_event.key] = function_pack(func, args);
       break;
     }
-    case LoopEvent: {
-      PackedFunction current_f = listeningTable[LoopEvent];
+    case EventLoop: {
+      PackedFunction current_f = listeningTable[EventLoop];
       if (current_f) free(current_f);
-        listeningTable[LoopEvent] = function_pack(func, args);
+        listeningTable[EventLoop] = function_pack(func, args);
     }
     default:
       break;

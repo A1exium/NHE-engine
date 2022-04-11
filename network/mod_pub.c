@@ -3,4 +3,4 @@
 //
 #include "mod_pub.h"
 
-void (*send_event)(Event) = 0;
+void (*send_event)(Event, int (*)(void *, char *)) = 0;

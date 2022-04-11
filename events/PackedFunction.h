@@ -13,6 +13,6 @@ typedef struct PackedFunction_s {
   EventCallbackArgs args;
 } *PackedFunction;
 
-void packedFunction_call(PackedFunction pf);
+void packedFunction_call(Event, PackedFunction pf);
 
 #endif //SGM_SRC_ENGINE_EVENTS_PACKEDFUNCTION_H_

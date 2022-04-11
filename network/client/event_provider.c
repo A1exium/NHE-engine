@@ -19,10 +19,10 @@ extern void clientProvideEvents() {
   }
 }
 
-extern void sendEvent(Event event) {
+extern void sendEvent(Event event, int (*f)(void *, char *)) {
   if (CLIENT_STATUS == 1) {
     static char buf[1024];
-    int len = Event_serialize(event, buf);
+    int len = Event_serialize(event, f, buf);
     send(CLIENT_SOCK_FD, buf, len, 0);
   }
 }

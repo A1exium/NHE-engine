@@ -6,7 +6,8 @@
 #define SGM_SRC_ENGINE_EVENTS_EVENTCALLBACK_H_
 
 #include "EventCallbackArgs.h"
+#include "Event.h"
 
-typedef void (*EventCallback)(EventCallbackArgs);
+typedef void (*EventCallback)(Event, EventCallbackArgs);
 
 #endif //SGM_SRC_ENGINE_EVENTS_EVENTCALLBACK_H_

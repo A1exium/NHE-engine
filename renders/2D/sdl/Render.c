@@ -19,8 +19,8 @@ extern void provideEvents() {
         exit(0);
         break;
       case SDL_KEYDOWN:
-        catched_event.type = Keyboard;
-        catched_event.key = event.key.keysym.sym;
+        catched_event.type = EventKeyboard;
+        event_keyboard_set_key(&catched_event, event.key.keysym.sym);
         Event_throw(catched_event);
         break;
       default:
