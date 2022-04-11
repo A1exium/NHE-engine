@@ -6,6 +6,11 @@
 #include <stdarg.h>
 #include <stdlib.h>
 
+const EventCallbackArgs NO_ARGS = {
+    .length = 0,
+    .storage = 0,
+};
+
 extern EventCallbackArgs EventCallbackArgs_pack(int argc, void *arg,...) {
   va_list _args;
   EventCallbackArgs args;

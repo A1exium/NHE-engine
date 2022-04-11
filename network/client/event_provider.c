@@ -10,8 +10,9 @@
 
 extern int CLIENT_SOCK_FD;
 
+
 extern void clientProvideEvents() {
-  static char buf[1024];
+  char buf[1024];
   while (recv(CLIENT_SOCK_FD, buf, 1024, 0) > 0) {
     Event event;
     Event_deserialize(buf, &event);
@@ -20,9 +21,11 @@ extern void clientProvideEvents() {
 }
 
 extern void sendEvent(Event event, int (*f)(void *, char *)) {
-  if (CLIENT_STATUS == 1) {
+  if (CLIENT_STATUS == 1 && event.type == EventCustom) {
     static char buf[1024];
-    int len = Event_serialize(event, f, buf);
-    send(CLIENT_SOCK_FD, buf, len, 0);
+    int len;
+    if ((len = Event_serialize(event, f, buf)) > 0) {
+      send(CLIENT_SOCK_FD, buf, len, 0);
+    }
   }
 }

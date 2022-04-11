@@ -10,6 +10,9 @@ typedef struct EventCallbackArgs_s {
   int length;
 } EventCallbackArgs;
 
+
+extern const EventCallbackArgs NO_ARGS;
+
 extern EventCallbackArgs EventCallbackArgs_pack(int argc, void *arg,...);
 
 extern void EventCallbackArgs_unpack(EventCallbackArgs _args, ...);

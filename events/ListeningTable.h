@@ -8,8 +8,9 @@
 #include "Event.h"
 #include "EventCallbackArgs.h"
 #include "EventCallback.h"
+#include "../tools/HashTable.h"
 
-typedef void **HashTable;
+//typedef void **HashTable;
 
 void ListeningTable_init();
 

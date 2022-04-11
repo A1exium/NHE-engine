@@ -16,10 +16,15 @@ int CLIENT_ID = -1;
 
 #include <errno.h>
 #include <stdio.h>
+#include "../../events/Event.h"
+
+void client_set_id(Event e, EventCallbackArgs _args) {
+  CLIENT_ID = e.payload.server_message_event.sender_id;
+}
 
 int clientInit(char *addr, unsigned int port) {
   int ret_code = 0;
-  CLIENT_SOCK_FD = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+  CLIENT_SOCK_FD = socket(AF_INET, SOCK_STREAM | SOCK_NONBLOCK, IPPROTO_TCP);
   if (CLIENT_SOCK_FD > 0) {
     struct sockaddr_in serv_addr;
     serv_addr.sin_family = AF_INET;
@@ -28,10 +33,9 @@ int clientInit(char *addr, unsigned int port) {
     ret_code = connect(CLIENT_SOCK_FD, (struct sockaddr *)&serv_addr, sizeof(serv_addr));
 
     if (ret_code == 0 || (ret_code == -1 && ((errno == EINPROGRESS) || (errno == EWOULDBLOCK) || (errno == EISCONN)))) {
-      char buf[4] = "\0\0\0\0";
-      recv(CLIENT_SOCK_FD, buf, 4, 0);
-      sscanf(buf, "%d", &CLIENT_ID);
-      fcntl(CLIENT_SOCK_FD, F_SETFL, SOCK_STREAM | SOCK_NONBLOCK);
+      Event set_id = Event_new(EventServerMessage);
+      set_id.payload.server_message_event.custom_event_type = 0;
+      addEventListener(set_id, client_set_id, NO_ARGS);
       CLIENT_STATUS = 1;
       send_event = sendEvent;
       return 0;

@@ -38,7 +38,7 @@ add_library(NHE-base STATIC#SHARED
 		tools/SizedArray.c tools/SizedArray.h
 		network/server/server_init.c network/server/server_init.h
 		network/server/server.c network/server/server.h
-        network/mod_pub.h network/mod_pub.c)
+        network/mod_pub.h network/mod_pub.c tools/HashTable.c tools/HashTable.h)
 
 #add_library(NHE-term STATIC)
 #target_link_libraries(NGE-term NHE-base)

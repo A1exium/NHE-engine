@@ -58,11 +58,15 @@ int event_custom_set_data(Event *event, void *data) {
 int Event_serialize(Event event, int(*serializing_function)(void *, char *dest), char *dest) {
   if (event.type != EventCustom)
     return 0;
-  return sprintf(
-      dest,
-      "%d|",
-      event.payload.custom_event.custom_event_type) +
-      serializing_function(event.payload.custom_event.data, dest);
+
+  if (serializing_function)
+    return sprintf(
+        dest,
+        "%d|",
+        event.payload.custom_event.custom_event_type) +
+        serializing_function(event.payload.custom_event.data, dest);
+  else
+    return sprintf(dest, "%d-", event.payload.custom_event.custom_event_type);
 }
 
 int Event_deserialize(char *src, Event *event) {
@@ -74,7 +78,7 @@ int Event_deserialize(char *src, Event *event) {
       &event->payload.server_message_event.sender_id,
       &event->payload.server_message_event.custom_event_type,
       event->payload.server_message_event.serialized_data
-      ) != 3;
+      ) <= 2;
 }
 
 //int Event_serialize(Event event, char *dest) {
