@@ -12,7 +12,7 @@ extern int CLIENT_SOCK_FD;
 
 
 extern void clientProvideEvents() {
-  char buf[1024];
+  static char buf[1024];
   while (recv(CLIENT_SOCK_FD, buf, 1024, 0) > 0) {
     Event event;
     Event_deserialize(buf, &event);

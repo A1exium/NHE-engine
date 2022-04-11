@@ -102,7 +102,7 @@ extern void addEventListener(Event target, EventCallback func, EventCallbackArgs
       break;
     }
     case EventCustom: {
-      HashTable types = hashTable_get(listeningTable, EventServerMessage);
+      HashTable types = hashTable_get(listeningTable, EventCustom);
       List functions = hashTable_get(types, target.payload.custom_event.custom_event_type);
       if (functions) {
         list_add(functions, function_pack(func, args));

@@ -71,7 +71,6 @@ int Event_serialize(Event event, int(*serializing_function)(void *, char *dest),
 
 int Event_deserialize(char *src, Event *event) {
   event->type = EventServerMessage;
-  struct EventServerMessage_s msg;
   return sscanf(
       src,
       "%d|%d|%s-",
