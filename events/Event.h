@@ -7,17 +7,12 @@
 
 typedef struct GameObject_s *GameObject;
 
-#define EVENT_TYPE_COUNT 3
-#define EVENT_TYPE_KEYBOARD_COUNT 256
-#define EVENT_TYPE_MOUSE_COUNT 3
-
 //#include "engine.h"
 #include "../geometry/Position.h"
 
 typedef enum EventType_t {
   EventKeyboard = 0,
   EventMouse = 1,
-//  ObjectClick,
   EventLoop = 2,
   EventServerMessage = 3,
   EventCustom = 4,
@@ -55,6 +50,9 @@ typedef struct Event_s {
 
 Event Event_new(EventType type);
 
+typedef void *DataDesealizingFunction(char *src);
+typedef int DataSealizingFunction(void *data, char *dest);
+
 Event Event_keyboard_new(int key);
 
 int event_keyboard_set_key(Event *event, int key);
@@ -65,8 +63,16 @@ int event_custom_set_type(Event *event, int type);
 
 int event_custom_set_data(Event *event, void *data);
 
-int Event_serialize(Event event, int(*serializing_function)(void *, char *dest), char *dest);
+int event_serialize(Event event, DataSealizingFunction, char *dest);
 
-int Event_deserialize(char *src, Event *event);
+char *event_deserialize(char *src, Event *event);
+
+int event_custom_set_data(Event *event, void *data);
+
+void *event_server_message_get_data(Event event, DataDesealizingFunction f);
+
+Event Event_server_message_new(int custom_type);
+
+void event_free(Event event);
 
 #endif //SGM_SRC_ENGINE_EVENTS_EVENT_H_

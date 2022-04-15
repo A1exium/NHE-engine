@@ -18,6 +18,6 @@ void serverServe();
 
 void serverSendAll(char *data, unsigned int data_len);
 
-void serverSendEvent(Event event, int (*f)(void *, char *));
+void serverSendEvent(Event event, DataSealizingFunction);
 
 #endif //SGM_SRC_ENGINE_NETWORK_SERVER_SERVER_H_

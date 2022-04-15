@@ -53,6 +53,7 @@ void event_frame() {
   Event event;
   while (Event_drain(&event)) {
     listeningTable_call(event);
+//    event_free(event);
   }
   render_render(GLOBAL_RENDER);
 }

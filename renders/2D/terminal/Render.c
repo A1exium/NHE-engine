@@ -42,9 +42,17 @@ Render Render_new(Screen screen, TextureStorage texture_storage, int width, int 
 #include "../../globals/const.h"
 
 void render_render(Render render) {
+  static Picture pic = 0;
+  if (pic == 0)
+    pic = Picture_new(render->width, render->height);
+  else {
+    Pixel null_pixel = Pixel_from(' ', Transparent, Transparent);
+    for (int x = 0; x < render->width; x++)
+      for (int y = 0; y < render->height; y++) {
+        picture_set_pixel(pic, x, y, null_pixel);
+      }
+  }
 
-
-  Picture pic = Picture_new(render->width, render->height);
   foreach(View view, view, render->screen) {
     Position view_pos = view_get_pos(view);
     Texture *cur_texture = Texture_new(render_get_width(render) / view_get_width(view), render_get_height(render) / view_get_height(view));

@@ -6,6 +6,7 @@
 #define SGM_SRC_ENGINE_NETWORK_CLIENT_CLIENT_INIT_H_
 
 extern int CLIENT_STATUS;
+extern char* RECV_BUFFER;
 int clientInit(char *addr, unsigned int port);
 
 #endif //SGM_SRC_ENGINE_NETWORK_CLIENT_CLIENT_INIT_H_

@@ -88,5 +88,6 @@ extern Position gameObject_get_pos(GameObject obj);
 
 extern void gameObject_move(GameObject game_object, int dx, int dy, int dz);
 
+extern void GameObject_free(GameObject game_object);
 
 #endif //SGM_SRC_ENGINE_OBJECTS_MOD_PUB_H_

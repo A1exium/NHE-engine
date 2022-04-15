@@ -8,19 +8,13 @@
 #include <unistd.h>
 #include "network/mod_pub.h"
 #include "client.h"
-#include "fcntl.h"
+#include "stdlib.h"
 
 int CLIENT_SOCK_FD = 0;
 int CLIENT_STATUS = 0;
-int CLIENT_ID = -1;
+char* RECV_BUFFER = 0;
 
 #include <errno.h>
-#include <stdio.h>
-#include "../../events/Event.h"
-
-void client_set_id(Event e, EventCallbackArgs _args) {
-  CLIENT_ID = e.payload.server_message_event.sender_id;
-}
 
 int clientInit(char *addr, unsigned int port) {
   int ret_code = 0;
@@ -33,10 +27,11 @@ int clientInit(char *addr, unsigned int port) {
     ret_code = connect(CLIENT_SOCK_FD, (struct sockaddr *)&serv_addr, sizeof(serv_addr));
 
     if (ret_code == 0 || (ret_code == -1 && ((errno == EINPROGRESS) || (errno == EWOULDBLOCK) || (errno == EISCONN)))) {
-      Event set_id = Event_new(EventServerMessage);
-      set_id.payload.server_message_event.custom_event_type = 0;
-      addEventListener(set_id, client_set_id, NO_ARGS);
+//      Event set_id = Event_new(EventServerMessage);
+//      set_id.payload.server_message_event.custom_event_type = 0;
+//      addEventListener(set_id, client_set_id, NO_ARGS);
       CLIENT_STATUS = 1;
+      RECV_BUFFER = calloc(1024, sizeof(char));
       send_event = sendEvent;
       return 0;
     }

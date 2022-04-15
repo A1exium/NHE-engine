@@ -35,21 +35,23 @@ void serverSendAll(char *data, unsigned int data_len) {
   }
 }
 
-void serverSendEvent(Event event, int (*f)(void *, char *)) {
+void serverSendEvent(Event event, DataSealizingFunction serializing_function) {
   char buf[1024];
-  ssize_t len = Event_serialize(event, f, buf);
+  ssize_t len = event_serialize(event, serializing_function, buf);
   serverSendAll(buf, len);
 }
 
 void serverServe() {
+  int id = 0;
   foreach(int *client_fd, client_fd, CONNECTIONS) {
     char buf[1024];
     ssize_t readed = read(*client_fd, buf, 1024);
     if (readed > 0) {
-      Event tmp;
-      Event_deserialize(buf, &tmp);
+      Event tmp = Event_new(EventServerMessage);
+      event_deserialize(buf, &tmp);
       Event_throw(tmp);
       serverSendAll(buf, readed);
     }
+    id++;
   }
 }

@@ -26,9 +26,12 @@ void listeningTable_call(Event event) {
   List functions = 0;
   switch (event.type) {
     case EventMouse:
-    case EventKeyboard:
-      functions = hashTable_get(hashTable_get(listeningTable, EventKeyboard), event.payload.keyboard_event.key);
+    case EventKeyboard: {
+      HashTable tb = hashTable_get(listeningTable, EventKeyboard);
+      if (tb)
+        functions = hashTable_get(tb, event.payload.keyboard_event.key);
       break;
+    }
     case EventLoop:
       functions = hashTable_get(listeningTable, EventLoop);
       break;
@@ -41,15 +44,16 @@ void listeningTable_call(Event event) {
           event.payload.custom_event.custom_event_type
       );
       break;
-    case EventServerMessage:
-      functions = hashTable_get(
-          hashTable_get(
-              listeningTable,
-              EventServerMessage
-          ),
-          event.payload.server_message_event.custom_event_type
+    case EventServerMessage: {
+      HashTable tb = hashTable_get(
+          listeningTable,
+          EventServerMessage
       );
+      if (tb) {
+        functions = hashTable_get(tb,event.payload.server_message_event.custom_event_type);
+      }
       break;
+    }
     default:
       break;
   }
@@ -59,6 +63,7 @@ void listeningTable_call(Event event) {
         packedFunction_call(event, packed);
     }
   }
+
 }
 
 PackedFunction function_pack(EventCallback f, EventCallbackArgs args) {

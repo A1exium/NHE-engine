@@ -5,13 +5,15 @@
 #include "HashTable.h"
 #include <stdlib.h>
 
-struct NodeItem_s {
-  int key;
-  void *value;
-};
+//struct NodeItem_s {
+//  int key;
+//  void *value;
+//};
 
 struct BinTreeNode_s {
-  struct NodeItem_s item;
+//  struct NodeItem_s item;
+  int key;
+  void *value;
   struct BinTreeNode_s *left;
   struct BinTreeNode_s *right;
 };
@@ -24,24 +26,24 @@ struct BinTreeNode_s *BinTreeNode_new(int key, void *value) {
   struct BinTreeNode_s *node = malloc(sizeof(struct BinTreeNode_s));
   node->left = 0;
   node->right = 0;
-  node->item.key = key;
-  node->item.value = value;
+  node->key = key;
+  node->value = value;
   return node;
 }
 
 void binTreeNode_insert(struct BinTreeNode_s *hash_table, int key, void *value) {
-  if (key > hash_table->item.key) {
+  if (key > hash_table->key) {
     if (hash_table->right)
       binTreeNode_insert(hash_table->right, key, value);
     else
       hash_table->right = BinTreeNode_new(key, value);
-  } else if (key < hash_table->item.key) {
+  } else if (key < hash_table->key) {
     if (hash_table->left)
       binTreeNode_insert(hash_table->left, key, value);
     else
       hash_table->left = BinTreeNode_new(key, value);
   } else {
-    hash_table->item.value = value;
+    hash_table->value = value;
   }
 //  struct BinTreeNode_s *node = hash_table;
 //  while (1) {
@@ -68,12 +70,12 @@ void binTreeNode_insert(struct BinTreeNode_s *hash_table, int key, void *value) 
 
 void *binTreeNode_get(struct BinTreeNode_s *node, int key) {
   if (node) {
-    if (key > node->item.key)
+    if (key > node->key)
       return binTreeNode_get(node->right, key);
-    else if (key < node->item.key)
+    else if (key < node->key)
       return binTreeNode_get(node->left, key);
     else
-      return node->item.value;
+      return node->value;
   }
   return 0;
 }

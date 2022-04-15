@@ -8,10 +8,9 @@
 #include "events/Event.h"
 
 extern int CLIENT_STATUS;
-extern int CLIENT_ID;
 
 extern void clientProvideEvents();
 
-extern void sendEvent(Event event, int (*f)(void *, char *));
+extern void sendEvent(Event, DataSealizingFunction);
 
 #endif //SGM_SRC_ENGINE_NETWORK_CLIENT_CLIENT_H_
