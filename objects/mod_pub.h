@@ -90,4 +90,9 @@ extern void gameObject_move(GameObject game_object, int dx, int dy, int dz);
 
 extern void GameObject_free(GameObject game_object);
 
+
+extern unsigned int Area_get_size_x(Area area);
+extern unsigned int Area_get_size_y(Area area);
+extern unsigned int Area_get_size_z(Area area);
+
 #endif //SGM_SRC_ENGINE_OBJECTS_MOD_PUB_H_
