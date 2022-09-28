@@ -15,5 +15,5 @@ void Screen_add_layer(Screen screen, View *view) {
 }
 
 extern void screen_free(Screen screen) {
-  list_free(screen, view_free);
+  list_free(screen, (void (*)(void *)) view_free);
 }

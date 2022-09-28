@@ -29,7 +29,8 @@ extern void sendEvent(Event event, DataSealizingFunction f) {
     static char buf[1024];
     int len;
     if ((len = event_serialize(event, f, buf)) > 0) {
-      send(CLIENT_SOCK_FD, buf, len, 0);
+      volatile ssize_t rt = send(CLIENT_SOCK_FD, buf, len, 0);
+//      printf("<%zd>\n", rt);
     }
   }
 }

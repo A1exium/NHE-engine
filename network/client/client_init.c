@@ -15,6 +15,7 @@ int CLIENT_STATUS = 0;
 char* RECV_BUFFER = 0;
 
 #include <errno.h>
+#include <string.h>
 
 int clientInit(char *addr, unsigned int port) {
   int ret_code = 0;
@@ -34,9 +35,10 @@ int clientInit(char *addr, unsigned int port) {
       RECV_BUFFER = calloc(1024, sizeof(char));
       send_event = sendEvent;
       return 0;
+    } else {
+      close(CLIENT_SOCK_FD);
+      CLIENT_SOCK_FD = -1;
     }
-    close(CLIENT_SOCK_FD);
-    CLIENT_SOCK_FD = -1;
   }
   return ret_code;
 }
